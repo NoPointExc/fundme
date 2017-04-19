@@ -1,11 +1,14 @@
 # fundme
 Database homework: crowdfunding website.
 
+## Requirement
+- node.js:  https://nodejs.org/en/download/ 
+- python 2.7
+
 ## Usage  
-- clean: ```$make clean```
 - init database: ```$make db```
-- start server: ```$make start```
 - install node.js modules: ```$node install```
+- start server: ```$make start```
 
 ## Directory  
 - sql: sqls setup database. 
