@@ -1,8 +1,8 @@
 # fundme
 Database homework: crowdfunding website.
 
-## requirement
-- node.js: see https://nodejs.org/en/download/ 
+## Requirement
+- node.js:  https://nodejs.org/en/download/ 
 - python 2.7
 
 ## Usage  
