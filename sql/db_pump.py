@@ -1,8 +1,14 @@
 #!/usr/bin/python
-
+password = 'pwd'
+hashedPwd = '{\"hash\":\"4p1Xia3+zTcFO9GuwkREOoTwMpIPMa8y+tPi3M6rUH64QjBwSus+27XV6P6e5VZmNxE0EVytYwHL/aaiUxw1QRiK\",\"salt\":\"KW03zr0Plbfpd+9snI7o+bUcOBcNUTVFsZmp2Q3VqW2PLSzUtOYrHYnVS9zwP/paYvs/n6dCfJfqbmqOaHVCH7fp\",\"keyLength\":66,\"hashMethod\":\"pbkdf2\",\"iterations\":402383}'
 
 def create_users(row):
-    return 'INSERT INTO  Users VALUES ' + '(' + str(row)[1:-1] + ');'  
+    users = row[:-1]
+    return 'INSERT INTO  Users VALUES ' + '(' + str(users)[1:-1] + ');'  
+
+def create_account(row):
+    account = [row[0], hashedPwd]
+    return 'INSERT INTO  Account VALUES ' + '(' + str(account)[1:-1] + ');'  
 
 def create_project(row):
     return 'INSERT INTO  Project VALUES ' + '(' + str(row)[1:-1] + ');'  
@@ -41,6 +47,7 @@ def print_all(pth, fun):
 
 
 print_all('./sql/data/user', create_users)
+print_all('./sql/data/user', create_account)
 print_all('./sql/data/project', create_project)
 print_all('./sql/data/tag',create_tag)
 print_all('./sql/data/pledge',create_pledge)

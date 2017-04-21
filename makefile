@@ -3,8 +3,7 @@ start:
 	npm start
 smallface:
 	@echo ':)'
-clean:
-	cat sql/fundme.sql | sudo mysql
+clean: db
 	rm -rf node_modules/
 all: clean db install start
 	@echo 'clean node.js moduels and database...'
@@ -12,8 +11,12 @@ all: clean db install start
 	@echo 'start server ...'
 install:
 	node install
-db: clean
+data: db
 	python sql/db_pump.py  | sudo mysql fund_me
-tg: db
+db: table trigger
+	@echo 'tables and triggers created'
+table:
+	cat sql/fundme.sql | sudo mysql
+trigger: db
 	cat sql/trigger.sql  | sudo mysql fund_me
 
