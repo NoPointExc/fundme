@@ -7,19 +7,24 @@ DROP TABLE IF EXISTS `User_project`;
 DROP TABLE IF EXISTS `Comment_project`;
 DROP TABLE IF EXISTS `Fellow_user`;
 DROP TABLE IF EXISTS `Project`;
+DROP TABLE IF EXISTS `Account`;
 DROP TABLE IF EXISTS `Users`;
 
 -- Entity
 
 -- status can be `funding`, `failed`, `working`,  `completed`   
-
--- TODO: put password into isolated db.
 CREATE TABLE `Users`(
     uname VARCHAR(40) NOT NULL,
     address VARCHAR(40) NOT NULL,
     credict_card VARCHAR(40) NOT NULL,
-    password VARCHAR(40) NOT NULL,
     PRIMARY KEY(uname)
+);
+
+CREATE TABLE `Account`(
+    uname VARCHAR(40) NOT NULL,
+    password VARCHAR(512),
+    PRIMARY KEY(uname),
+    FOREIGN KEY (`uname`) REFERENCES `Users` (`uname`)
 );
 
 -- TODO: create trigger end_time => (funding -> failed| working).
