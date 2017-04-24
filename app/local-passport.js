@@ -23,29 +23,29 @@ function valid(username, password){
 
 function verify(username, password, done){
     if(!valid(username, password)){
-	console.log('invalid password or username length');
+	log.debug('invalid password or username length');
 	return done(null, false, {message : 'invalid password or username length'});
     }
     sql = db.sql.getAccount(username);
     db.pool.query(sql, function(error, rows, fields){
-	console.log("query ... ");
+	log.debug("query ... ");
 	if(error){
-	    console.log('error: when execute ' + sql);
+	    log.debug('error: when execute ' + sql);
 	    return(error);
 	}
 	if(rows.length == 0){
-	    //console.log(rows);
+	    //log.debug(rows);
 	    return done(null, false, { message: 'Incorrect username.'  });
 	}else{
 	    ecypt = credential();
 	    storedHash = rows[0].password;
-	    console.log(storedHash);
+	    log.debug(storedHash);
 	    ecypt.verify(storedHash, password, function (error, isValid){
 		if(error){
 		    throw error;
 		}
 		if(isValid){
-		    console.log("authorized");
+		    log.debug("authorized");
 		    return done(null, username);
 		}
 	    });
@@ -61,11 +61,11 @@ function signup(username, password, done){
     var sql = db.sql.getAccount(username);
     db.pool.query(sql, function(error, rows, fields){
 	if(error){
-	    console.log('error: when execute ' + sql);
+	    log.debug('error: when execute ' + sql);
 	    return done(error);
 	}
 	if(rows.length != 0){
-	    console.log('username exists');
+	    log.debug('username exists');
 	    //redirect to /login when username exists
 	    return done(null, false, {message: 'user exists'});
 	}else{
@@ -77,8 +77,8 @@ function signup(username, password, done){
 		    return done(error);
 		}
 		var sql = db.sql.putAccount(username, hashedPassword);
-		console.log(hashedPassword);
-		console.log(sql);
+		log.debug(hashedPassword);
+		log.debug(sql);
 		db.pool.query(sql, function(error, rows, fields){
 		    if(error){
 			return done(error);
@@ -93,5 +93,5 @@ function signup(username, password, done){
 
 passport.use('local-login', new LocalStrategy(verify));
 passport.use('local-signup', new LocalStrategy(signup));
-//console.log("local-passport initlized");
+//log.debug("local-passport initlized");
 module.exports = passport;

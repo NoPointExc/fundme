@@ -10,3 +10,9 @@ module.exports.session = {
     resave: false,
     saveUninitialized: true
 };
+
+module.exports.log = function(){
+    var Log = require('log');
+    log = new Log('debug');
+    return log;
+}
