@@ -1,10 +1,36 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('../app/local-passport');
+var profile = require('../app/user-profile');
 
-/* GET login and signup main page*/
+/* GET user profile page*/
 router.get('/', function(req, res, next) {
+    //TODO: get profile here
     res.send('respond with users infomation page');
+});
+
+/*POST user profile*/
+router.post('/', function(req, res, next){
+    var username = req.query.username || null;
+    if(username == null && req.session){
+	username = req.session.passport.user; 
+    }
+    if(username){
+	profile.save(username, req.query.address, req.query.credict_card, function(errors, done){
+	    if(errors){
+		log.error('error when save profile');
+		return next(errors);
+	    }
+	    if(done){
+		res.send('success');
+	    }else{
+		res.send('failed');
+	    }
+	});	
+    }else{
+	log.debug('underfined username in userproile query');
+	res.status(401).send('username must be specified when update profile.');
+    }
 });
 
 /* GET users login page. */
