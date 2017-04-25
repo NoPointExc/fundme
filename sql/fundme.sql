@@ -23,8 +23,8 @@ CREATE TABLE `Users`(
 CREATE TABLE `Account`(
     uname VARCHAR(40) NOT NULL,
     password VARCHAR(512),
-    PRIMARY KEY(uname),
-    FOREIGN KEY (`uname`) REFERENCES `Users` (`uname`)
+    PRIMARY KEY(uname)
+--    FOREIGN KEY (`uname`) REFERENCES `Users` (`uname`)
 );
 
 -- TODO: create trigger end_time => (funding -> failed| working).
