@@ -3,6 +3,8 @@ var LocalStrategy = require('passport-local').Strategy;
 var credential = require('credential');
 
 var db = require('./db');
+var config = require('./config');
+var log = config.log();
 
 const MAX_UNAME = 38;
 const MIN_UNAME = 1;
