@@ -87,9 +87,9 @@ CREATE TABLE `Tag`(
 -- type can be `text`, `video`, `picture`. content is a url link when type is `video` or `picture`
 CREATE TABLE `Project_update`(
     pname VARCHAR(40) NOT NULL,
-    type VARCHAR(40) NOT NULL,
-    content VARCHAR(80) NOT NULL,
     time DATETIME NOT NULL, 
+    type VARCHAR(40) NOT NULL,
+    content VARCHAR(500) NOT NULL,
     PRIMARY KEY(pname, time),
     FOREIGN KEY (`pname`) REFERENCES `Project` (`pname`)
 );

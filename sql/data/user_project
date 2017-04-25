@@ -1,0 +1,6 @@
+#uname, pname, time, relation('like' | 'fellow')
+Jiayang;A Wall;1970-01-01 00:01:02; like
+Iron Man;New Shield;2016-01-03 12:05:24; fellow
+Jiayang;New suite;2016-01-03 12:05:24; like
+Yancheng;A Wall;1970-01-01 00:01:02; fellow
+BobInBrooklyn;A Wall;1970-01-01 00:11:02; like
