@@ -93,7 +93,19 @@ function signup(username, password, done){
     }); 
 }
 
+function authorizedUser(session){
+    var username = null;
+    log.debug(session);
+    if(session){
+	if(session.passport){
+	    username = session.passport.user;
+	}
+    }
+    return username;
+}
+
 passport.use('local-login', new LocalStrategy(verify));
 passport.use('local-signup', new LocalStrategy(signup));
+passport.authorizedUser = authorizedUser;
 //log.debug("local-passport initlized");
 module.exports = passport;

@@ -9,33 +9,29 @@ router.get('/', function(req, res, next) {
     res.send('respond with users infomation page');
 });
 
-/*POST user profile*/
+/* POST user profile*/
 router.post('/', function(req, res, next){
-    var username = req.query.username || null;
-    if(username == null && req.session){
-	username = req.session.passport.user; 
-    }
+    var username = passport.authorizedUser(req.session);
     if(username){
-	profile.save(username, req.query.address, req.query.credict_card, function(errors, done){
-	    if(errors){
-		log.error('error when save profile');
-		return next(errors);
-	    }
-	    if(done){
-		res.send('success');
-	    }else{
-		res.send('failed');
-	    }
-	});	
+	profile.save(username, req.query.address, req.query.credict_card, onSaved);
     }else{
-	log.debug('underfined username in userproile query');
+	log.debug('must login before update profile');
 	res.status(401).send('username must be specified when update profile.');
+    }
+    
+    function onSaved(error){
+	if(error){
+	    log.error('error when save profile');
+	    return next(errors);
+	}else{
+	    res.status(200).send('success');
+	}
     }
 });
 
 /* GET users login page. */
 router.get('/login', function(req, res, next) {
-    if(req.session.passport){
+    if(passport.authorizeduser(req.session)){
 	res.redirect('/');
     }else{
 	//TODO: render login page.
@@ -45,7 +41,7 @@ router.get('/login', function(req, res, next) {
 
 /* POST users login request*/
 router.post('/login', passport.authenticate('local-login', 
-	    {successRedirect:'/' ,failureRedirect: '/login?message=wrong username or passowrd'}));
+	    {successRedirect:'/' ,failureRedirect: '/?message=wrong username or passowrd'}));
 
 /* GET users signup page. */
 router.get('/signup', function(req, res, next) {
@@ -55,6 +51,6 @@ router.get('/signup', function(req, res, next) {
 
 /* POST users signup request*/
 router.post('/signup', passport.authenticate('local-signup', 
-	    {successRedirect:'/' , failureRedirect: '/login?message=username exsits, try to login'}));
+	    {successRedirect:'/' , failureRedirect: '/?message=username exsits, try to login'}));
 
 module.exports = router;
