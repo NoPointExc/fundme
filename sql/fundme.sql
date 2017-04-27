@@ -15,8 +15,8 @@ DROP TABLE IF EXISTS `Users`;
 -- status can be `funding`, `failed`, `working`,  `completed`   
 CREATE TABLE `Users`(
     uname VARCHAR(40) NOT NULL,
-    address VARCHAR(40) NOT NULL,
-    credict_card VARCHAR(40) NOT NULL,
+    address VARCHAR(40),
+    credict_card VARCHAR(40),
     PRIMARY KEY(uname)
 );
 
