@@ -1,7 +1,6 @@
 #!/usr/bin/python
 password = 'pwd'
 hashedPwd = '{\"hash\":\"4p1Xia3+zTcFO9GuwkREOoTwMpIPMa8y+tPi3M6rUH64QjBwSus+27XV6P6e5VZmNxE0EVytYwHL/aaiUxw1QRiK\",\"salt\":\"KW03zr0Plbfpd+9snI7o+bUcOBcNUTVFsZmp2Q3VqW2PLSzUtOYrHYnVS9zwP/paYvs/n6dCfJfqbmqOaHVCH7fp\",\"keyLength\":66,\"hashMethod\":\"pbkdf2\",\"iterations\":402383}'
-
 def create_users(row):
     users = row[:-1]
     return 'INSERT INTO  Users VALUES ' + '(' + str(users)[1:-1] + ');'  

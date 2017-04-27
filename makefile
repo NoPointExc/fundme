@@ -12,7 +12,7 @@ all: clean db install start
 install:
 	node install
 data: db
-	python sql/db_pump.py  | sudo mysql fund_me
+	python2 sql/db_pump.py  | sudo mysql fund_me
 db: table trigger
 	@echo 'tables and triggers created'
 table:
