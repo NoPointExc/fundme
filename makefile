@@ -10,10 +10,10 @@ all: clean db install start
 	@echo 'init database & node.js moduels...'
 	@echo 'start server ...'
 install:
-	node install
-data: db
+	npm install
+data:
 	python2 sql/db_pump.py  | sudo mysql fund_me
-db: table trigger
+db: table trigger data
 	@echo 'tables and triggers created'
 table:
 	cat sql/fundme.sql | sudo mysql
