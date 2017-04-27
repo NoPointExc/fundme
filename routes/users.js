@@ -5,7 +5,6 @@ var profile = require('../app/user-profile');
 
 /* GET user profile page*/
 router.get('/', function(req, res, next) {
-    //TODO: get profile here
     res.send('respond with users infomation page');
 });
 
@@ -41,7 +40,7 @@ router.get('/login', function(req, res, next) {
 
 /* POST users login request*/
 router.post('/login', passport.authenticate('local-login', 
-	    {successRedirect:'/' ,failureRedirect: '/?message=wrong username or passowrd'}));
+	    {successRedirect:'/'}));
 
 /* GET users signup page. */
 router.get('/signup', function(req, res, next) {
@@ -51,6 +50,6 @@ router.get('/signup', function(req, res, next) {
 
 /* POST users signup request*/
 router.post('/signup', passport.authenticate('local-signup', 
-	    {successRedirect:'/' , failureRedirect: '/?message=username exsits, try to login'}));
+	    {successRedirect:'/' }));
 
 module.exports = router;
