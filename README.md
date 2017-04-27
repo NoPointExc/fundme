@@ -2,8 +2,9 @@
 Database homework: crowdfunding website.
 
 ## Requirement
-- node.js:  https://nodejs.org/en/download/ 
+- node.js
 - python 2.7
+- mysql: setup mysql user and password under ```app/config.js```	
 
 ## Usage  
 - init database: ```$make db```
