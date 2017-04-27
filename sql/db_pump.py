@@ -24,8 +24,14 @@ def create_rate(row):
 def create_fellow_user(row):
     return 'INSERT INTO  Fellow_user VALUES ' + '(' + str(row)[1:-1] + ');'  
 
+def create_user_project(row):
+    return 'INSERT INTO  User_project VALUES ' + '(' + str(row)[1:-1] + ');'  
+
 def create_comment_project(row):
     return 'INSERT INTO  Comment_project VALUES ' + '(' + str(row)[1:-1] + ');'  
+
+def create_project_update(row):
+    return 'INSERT INTO  Project_update VALUES ' + '(' + str(row)[1:-1] + ');'  
 
 def parse(pth):
     rst = []
@@ -53,4 +59,6 @@ print_all('./sql/data/pledge',create_pledge)
 print_all('./sql/data/rate',create_rate)
 print_all('./sql/data/fellow_user', create_fellow_user)
 print_all('./sql/data/comment_project', create_comment_project)
+print_all('./sql/data/project_update', create_project_update)
+print_all('./sql/data/user_project', create_user_project)
 

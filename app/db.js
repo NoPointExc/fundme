@@ -1,8 +1,8 @@
 var mysql = require('mysql');
 const config = require('./config');
+var log = config.log();
 
 var pool = mysql.createPool(config.mysql);
-
 //mysql example: https://www.npmjs.com/package/mysql
 //function done(error, account)
 function getAccount(username, done) {
@@ -36,6 +36,49 @@ function putAccount(username, password, done){
     });
 }
 
+
+/*project-updates*/
+function getReleatedProject(username){
+    var sql = "SELECT pname FROM User_project WHERE uname = ?"; 
+    sql += "UNION SELECT pname FROM Project WHERE uname = ?";
+    sql += "UNION SELECT pname FROM Pledge WHERE uname = ?";
+    return mysql.format(sql, [username, username, username]);
+}
+
+function getReleatedUpdate(username){
+    var sql_pname = getReleatedProject(username);
+    sql = "SELECT * FROM Project_update WHERE pname IN (" + sql_pname + ");";
+    return sql;
+}
+
+function getUpdate(projectname){
+    return mysql.format("SELECT * FROM Project_update WHERE pname = ?", [projectname]);
+}
+
+
+/*Users'comment, pledge, like and fellow*/
+const fellowedUser = 'SELECT fellowed_uname FROM Fellow_user WHERE fellower_uname = ?';
+
+//TODO: rename methods from get to query
+function getUserPledge(username, done){
+    var sql = 'SELECT pname, time, amount FROM Pledge WHERE uname IN ('+ fellowedUser +');';
+    sql = mysql.format(sql, username);
+    return pool.query(sql, done);
+}
+
+function getUserComment(username, done){
+    sql = 'SELECT pname, time, comment FROM Comment_project WHERE uname IN ('+ fellowedUser +');';	
+    sql = mysql.format(sql, [username]);	
+    log.debug(sql);
+    return pool.query(sql, done);
+}
+
+function getFellowedProject(username, done){
+    var sql = mysql.format('SELECT pname, time, relation FROM User_project WHERE uname IN ('+ fellowedUser +');', [username]);
+    return pool.query(sql, done);
+}
+
+
 function getUser(username){
     return "SELECT * FROM `Users` WHERE `uname`=" + pool.escape(username) + ";";
 }
@@ -52,11 +95,6 @@ function updateUser(username, address, credict_card){
     return mysql.format('UPDATE Users SET address = ?, credict_card = ?) WHERE uname = ?;', [address, credict_card, username]); 
 }
 
-//START TRANSACTION;
-//INSERT INTO table1 VALUES ('1','2','3');
-//INSERT INTO table2 VALUES ('bob','smith');
-//COMMIT;
-
 module.exports.sql ={
     'getUser': getUser,
     'putUser': putUser,
@@ -66,6 +104,9 @@ module.exports.sql ={
 module.exports.user = {
     'getAccount': getAccount,
     'putAccount': putAccount,
+    'getPledge': getUserPledge,
+    'getComment': getUserComment,
+    'getFellowedProject':getFellowedProject
 }
 
 module.exports.pool = pool;
