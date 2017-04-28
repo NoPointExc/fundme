@@ -98,7 +98,8 @@ function updateUser(username, address, credict_card){
 module.exports.sql ={
     'getUser': getUser,
     'putUser': putUser,
-    'updateUser': updateUser
+    'updateUser': updateUser,
+    'getReleatedUpdate': getReleatedUpdate,
 };
 
 module.exports.user = {
