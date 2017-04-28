@@ -95,6 +95,26 @@ function updateUser(username, address, credict_card){
     return mysql.format('UPDATE Users SET address = ?, credict_card = ?) WHERE uname = ?;', [address, credict_card, username]); 
 }
 
+function where(conditions){
+    if(!conditions || conditions.length == 0){
+	return '';
+    }
+    var sql = 'WHERE ' + mysql.format(conditions[0][0], conditions[0][1]);
+    log.debug(sql);
+    for(i = 1; i < conditions.length; i++){
+	sql =sql + ' AND ' + mysql.format(conditions[i][0], conditions[i][1]);
+    }
+    log.debug(sql);
+    return sql;
+}
+
+/*Projects Releated. */
+function getProjects(num, conditions, done){
+    var sql = mysql.format('SELECT * FROM Project '+ where(conditions) +' ORDER BY start_time DESC LIMIT ? ;', num);
+    log.debug(sql);
+    pool.query(sql, done);
+} 
+
 module.exports.sql ={
     'getUser': getUser,
     'putUser': putUser,
@@ -108,6 +128,10 @@ module.exports.user = {
     'getPledge': getUserPledge,
     'getComment': getUserComment,
     'getFellowedProject':getFellowedProject
-}
+};
+
+module.exports.project = {
+    'get':getProjects
+};
 
 module.exports.pool = pool;
