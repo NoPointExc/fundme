@@ -95,31 +95,48 @@ function updateUser(username, address, credict_card){
     return mysql.format('UPDATE Users SET address = ?, credict_card = ?) WHERE uname = ?;', [address, credict_card, username]); 
 }
 
-function where(conditions){
-    if(!conditions || conditions.length == 0){
+function where(fields){
+    if(!fields || fields.length == 0){
 	return '';
     }
-    var sql = 'WHERE ' + mysql.format(conditions[0][0], conditions[0][1]);
-    log.debug(sql);
-    for(i = 1; i < conditions.length; i++){
-	sql =sql + ' AND ' + mysql.format(conditions[i][0], conditions[i][1]);
+    var sql = 'WHERE ' + mysql.format(fields[0][0], fields[0][1]);
+    for(i = 1; i < fields.length; i++){
+	sql =sql + ' AND ' + mysql.format(fields[i][0], fields[i][1]);
     }
-    log.debug(sql);
+    return sql;
+}
+
+function select(fields){
+    if(!fields || fields == '*' || fields.length == 0|| fields[0] == '*'){
+	return ' * ';
+    }
+    var sql = 'SELECT ' + fields[0];
+    for(i = 1; i < fields.length; i++){
+	sql =sql + ' , ' + fields[i];
+    }
     return sql;
 }
 
 /*Projects Releated. */
-function getProjects(num, conditions, done){
-    var sql = mysql.format('SELECT * FROM Project '+ where(conditions) +' ORDER BY start_time DESC LIMIT ? ;', num);
+function getProjects(num, fields, done){
+    var sql = mysql.format('SELECT * FROM Project '+ where(fields) +' ORDER BY start_time DESC LIMIT ? ;', num);
     log.debug(sql);
     pool.query(sql, done);
 } 
+
+
+function getSelected(fields, table, conditions, done){
+    var sql = select(fields) + ' FROM ' + table + ' ' + where(conditions) + ';';
+    log.debug(sql);
+    pool.query(sql, done);
+}
 
 module.exports.sql ={
     'getUser': getUser,
     'putUser': putUser,
     'updateUser': updateUser,
     'getReleatedUpdate': getReleatedUpdate,
+    'select': getSelected
 };
 
 module.exports.user = {

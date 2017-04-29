@@ -3,6 +3,7 @@ var router = express.Router();
 var config = require('../app/config');
 var log = config.log();
 var project = require('../app/project');
+var passport = require('../app/local-passport');
 
 /* GET /Project
  *project list:  [num] [after] [category] [keyword]
@@ -33,9 +34,21 @@ router.get('/', function(req, res, next){
 });
 
 //project updates: pname num [after]
-router.get('/updates', function(req, res, next){
+router.get('/detail', function(req, res, next){
+    var username = passport.authorizedUser(req.session);
+    if(!req.query.pname){
+	return res.status(400).send('request with uname or pname');
+    }else{
+	project.detail(req.query.pname, username, function(error, result){
+	    log.debug('router project=' + result);
+	    if(error){
+		next(error, null);
+	    }else{
+		res.json(result);
+	    }
+	});	
+    }
 
 });
 
 module.exports = router;
-
