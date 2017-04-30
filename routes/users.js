@@ -3,12 +3,23 @@ var router = express.Router();
 var passport = require('../app/local-passport');
 var profile = require('../app/user-profile');
 
-/* GET user profile page*/
+/**
+ * @api {get} users/ get user profile page
+ * @apiGroup user
+ *
+ */
 router.get('/', function(req, res, next) {
     res.send('respond with users infomation page');
 });
 
-/* POST user profile*/
+/**
+ * @api {post} users/ post user profile
+ * @apiDescription post user information. Must login before post 
+ * @apiGroup user
+ * @apiParam {String} uname user name
+ * @apiParam {String} address user address
+ * @apiParam {String} credict_card users' credict card
+ */
 router.post('/', function(req, res, next){
     var username = passport.authorizedUser(req.session);
     if(username){
@@ -28,7 +39,11 @@ router.post('/', function(req, res, next){
     }
 });
 
-/* GET users login page. */
+/**
+ * @api {get} users/login get login page
+ * @apiGroup user
+ *
+ */
 router.get('/login', function(req, res, next) {
     if(passport.authorizeduser(req.session)){
 	res.redirect('/');
@@ -38,17 +53,33 @@ router.get('/login', function(req, res, next) {
     }
 });
 
-/* POST users login request*/
+/**
+ * @api {post} users/login login request
+ * @apiDescription post login request
+ * @apiGroup user
+ * @apiParam {String} uname user name
+ * @apiParam {String} password password 
+ */
 router.post('/login', passport.authenticate('local-login', 
 	    {successRedirect:'/'}));
 
-/* GET users signup page. */
+/**
+ * @api {get} users/signup get signup page
+ * @apiGroup user
+ *
+ */
 router.get('/signup', function(req, res, next) {
     //TODO:  render sign up page
     res.send('render signup page');
 });
 
-/* POST users signup request*/
+/**
+ * @api {post} users/signup signup request
+ * @apiDescription post signup request
+ * @apiGroup user
+ * @apiParam {String} uname user name
+ * @apiParam {String} password password 
+ */
 router.post('/signup', passport.authenticate('local-signup', 
 	    {successRedirect:'/' }));
 

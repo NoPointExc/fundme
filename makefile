@@ -19,4 +19,5 @@ table:
 	cat sql/fundme.sql | sudo mysql
 trigger: db
 	cat sql/trigger.sql  | sudo mysql fund_me
-
+doc:
+	apidoc -i routes/ -o public/doc/

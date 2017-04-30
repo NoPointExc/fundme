@@ -6,13 +6,15 @@ var project = require('../app/project');
 var passport = require('../app/local-passport');
 var util = require('../app/util');
 
-/* GET /Project
- *project list:  [num] [after] [category] [keyword]
- *num: 10 by default, from 1 -> INF. 
- *keyword: contains keyword in project description
- *after: the earlist time
- *category: project category
- * */  
+/**
+ * @api {get} /projects/detail get projects
+ * @apiGroup Project
+ * @apiDescription from newest to oldest in json format, any paramenters is alternative.
+ * @apiParam {number} num 10 by default, from 1 -> INF. 
+ * @apiParam {String} keyword contains keyword in project description
+ * @apiParam {time} after the earlist time
+ * @apiParam {string} category project category
+ */
 router.get('/', function(req, res, next){
     var num = 10;
     if(req.query.num){
@@ -34,7 +36,13 @@ router.get('/', function(req, res, next){
     });    
 });
 
-//project updates: pname num [after]
+/**
+ * @api {get} /projects/detail get project detail
+ * @apiDescription project detail and likes and fellow data in json 
+ * @apiGroup Project
+ *
+ * @apiParam {String} pname project name
+ */
 router.get('/detail', function(req, res, next){
     var username = passport.authorizedUser(req.session);
     if(!req.query.pname){
@@ -52,6 +60,13 @@ router.get('/detail', function(req, res, next){
 
 });
 
+/**
+ * @api {get} /projects/comments get user comments
+ * @apiName getComments
+ * @apiGroup Project
+ *
+ * @apiParam {String} pname project name to comment. 
+ */
 router.get('/comments',function(req, res, next){
     if(!req.query.pname){
 	return res.status(400).send('request with uname or pname');
@@ -68,8 +83,14 @@ router.get('/comments',function(req, res, next){
 
 });
 
+/**
+ * @api {post} /projects/comments post user comments
+ * @apiName PostUserComment
+ * @apiGroup Project
+ *
+ * @apiParam {String} pname project name to comment. 
+ */
 router.post('/comments',function(req, res, next){
-    log.debug('hello'); 
     log.debug(util.now());
     var username = passport.authorizedUser(req.session);
     if(!req.query.pname){

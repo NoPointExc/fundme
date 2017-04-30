@@ -4,6 +4,13 @@ var updates = require('../app/updates');
 var config = require('../app/config')
 var log = config.log();
 
+/**
+ * @api {get} newsfeed/projects/ get project newsfeed
+ * @apiGroup newsfeed
+ * @apiDescription when uname is given, return user fewllow or liked projects' news; when pname is given, return project releated news.
+ * @apiParam {String} uname username name
+ * @apiParam {String} pname project name
+ */
 router.get('/project', function(req, res, next){
     var username = req.query.uname || null;
     var projectname = req.query.pname || null;
@@ -25,6 +32,14 @@ router.get('/project', function(req, res, next){
     }
 });
 
+/**
+ * @api {get} newsfeed/activities/ get user newsfeed
+ * @apiDescription get users activities
+ * @apiGroup newsfeed
+ *
+ * @apiParam {String} uname username name
+ * @apiParam {String} pname project name
+ */
 router.get('/activities', function(req, res, next){
     var username = req.query.uname || null;
     
