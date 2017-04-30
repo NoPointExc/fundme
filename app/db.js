@@ -131,12 +131,35 @@ function getSelected(fields, table, conditions, done){
     pool.query(sql, done);
 }
 
+function insert(table, values, done){
+    log.debug(values);
+    if(values && values.length != 0){
+	var tmp = ' ? ';
+	for(i=0; i < values.length - 1; i++){
+	    tmp = tmp + ', ? ';
+	}
+	var sql = 'INSERT INTO ' + table + ' VALUES (' + tmp + ' );'
+	sql = mysql.format(sql, values);
+	log.debug(sql);
+	pool.query(sql, function(error, rows, fields){
+	    if(error){
+		throw error;
+	    }else{
+		return done();
+	    }
+	});
+    }else{
+	throw new error('undefined values for insert qury.');
+    } 
+}
+
 module.exports.sql ={
     'getUser': getUser,
     'putUser': putUser,
     'updateUser': updateUser,
     'getReleatedUpdate': getReleatedUpdate,
-    'select': getSelected
+    'select': getSelected,
+    'insert': insert
 };
 
 module.exports.user = {

@@ -4,6 +4,7 @@ var config = require('../app/config');
 var log = config.log();
 var project = require('../app/project');
 var passport = require('../app/local-passport');
+var util = require('../app/util');
 
 /* GET /Project
  *project list:  [num] [after] [category] [keyword]
@@ -66,4 +67,27 @@ router.get('/comments',function(req, res, next){
     }
 
 });
+
+router.post('/comments',function(req, res, next){
+    log.debug('hello'); 
+    log.debug(util.now());
+    var username = passport.authorizedUser(req.session);
+    if(!req.query.pname){
+	return res.status(400).send('request with uname or pname');
+    }else if(!username){
+	return res.status(401).send('login before comment on project');
+    }else{
+	var text = req.query.text || '';
+	project.putComment(req.query.pname, username, util.now(),text, function(error, result){
+	    log.debug('router project=' + result);
+	    if(error){
+		next(error, null);
+	    }else{
+		res.json(result);
+	    }
+	});	
+    }
+
+});
+
 module.exports = router;

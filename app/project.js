@@ -103,7 +103,15 @@ function comments(projectname, done){
     }
 }
 
+function putComment(projectname, username, time, text, done){
+    if(projectname){
+	sql.sql.insert('Comment_project', [username, projectname, time, text], function(){
+	    return done();
+	});
+    }
+}
+
 module.exports.get = get;
 module.exports.detail = detail;
 module.exports.comments = comments;
-
+module.exports.putComment = putComment;
