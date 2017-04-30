@@ -51,4 +51,19 @@ router.get('/detail', function(req, res, next){
 
 });
 
+router.get('/comments',function(req, res, next){
+    if(!req.query.pname){
+	return res.status(400).send('request with uname or pname');
+    }else{
+	project.comments(req.query.pname, function(error, result){
+	    log.debug('router project=' + result);
+	    if(error){
+		next(error, null);
+	    }else{
+		res.json(result);
+	    }
+	});	
+    }
+
+});
 module.exports = router;

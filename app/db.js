@@ -108,7 +108,7 @@ function where(fields){
 
 function select(fields){
     if(!fields || fields == '*' || fields.length == 0|| fields[0] == '*'){
-	return ' * ';
+	return 'SELECT * ';
     }
     var sql = 'SELECT ' + fields[0];
     for(i = 1; i < fields.length; i++){

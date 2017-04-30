@@ -91,5 +91,19 @@ function fellowBy(projectname, done){
     }); 
 }
 
+function comments(projectname, done){
+    if(projectname){
+	sql.sql.select(['*'], 'Comment_project', [['pname=?', projectname]],function (error, rows, fields){
+	    if(error){
+		return done(error, null);
+	    }else{
+		return done(null, rows);
+	    }
+	});
+    }
+}
+
 module.exports.get = get;
 module.exports.detail = detail;
+module.exports.comments = comments;
+
