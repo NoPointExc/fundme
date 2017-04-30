@@ -1,4 +1,3 @@
-public/doc
 *.log
 node_modules
 *.swp

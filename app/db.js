@@ -143,13 +143,35 @@ function insert(table, values, done){
 	log.debug(sql);
 	pool.query(sql, function(error, rows, fields){
 	    if(error){
-		throw error;
+		return done(false);
 	    }else{
-		return done();
+		return done(true);
 	    }
 	});
     }else{
 	throw new error('undefined values for insert qury.');
+    } 
+}
+
+function remove(table, conditions, done){
+    log.debug(conditions);
+    if(conditions && conditions.length != 0){
+	var tmp = ' ? ';
+	for(i=0; i < conditions.length - 1; i++){
+	    tmp = tmp + ', ? ';
+	}
+	var sql = 'DELETE FROM ' + table +' '+ where(conditions) + ';';
+	sql = mysql.format(sql, conditions);
+	log.debug(sql);
+	pool.query(sql, function(error, rows, fields){
+	    if(error){
+		return done(false);
+	    }else{
+		return done(true);
+	    }
+	});
+    }else{
+	return done(false);
     } 
 }
 
@@ -159,7 +181,8 @@ module.exports.sql ={
     'updateUser': updateUser,
     'getReleatedUpdate': getReleatedUpdate,
     'select': getSelected,
-    'insert': insert
+    'insert': insert,
+    'remove': remove
 };
 
 module.exports.user = {

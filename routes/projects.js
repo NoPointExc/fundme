@@ -26,7 +26,7 @@ router.get('/', function(req, res, next){
     var after = req.query.after || null;
     var category = req.query.category || null;
     var keyword = req.query.keyword || null;
-    
+
     project.get(num, after, category, keyword, function(error, projects){
 	if(error){
 	    next(error, null);
@@ -99,16 +99,42 @@ router.post('/comments',function(req, res, next){
 	return res.status(401).send('login before comment on project');
     }else{
 	var text = req.query.text || '';
-	project.putComment(req.query.pname, username, util.now(),text, function(error, result){
-	    log.debug('router project=' + result);
-	    if(error){
-		next(error, null);
+	project.putComment(req.query.pname, username, util.now(),text, function(success){
+	    if(success){
+	        return res.status(200).send('success');
 	    }else{
-		res.json(result);
+		return res.status(400).send('failed');
 	    }
 	});	
     }
 
+});
+
+/**
+ * @api {post} /projects/relation like or fellow a project
+ * @apiDescription set = true to like(fellow) a project, or false to cancel. Must login to post
+ * @apiName Like&Fellow
+ * @apiParam {boolean} set
+ * @apiParam {string} pname project name
+ * @apiParam {string} releation(like|fellow) between user and project
+ * @apiGroup Project
+ */
+router.post('/relation', function(req,res,next){
+    var username = passport.authorizedUser(req.session);
+    if(!req.query.pname ||!req.query.relation || (req.query.relation!='like' && req.query.relation != 'fellow')|| (req.query.set != 'true' && req.query.set != 'false') ){
+	return res.status(400).send('request with pname and like');
+    }else if(!username){
+	return res.status(401).send('login before this post');
+    }else{
+	log.debug(req.query.set);
+	project.setRelation(req.query.pname, username, util.now(), req.query.relation,req.query.set=='true', function(success){
+	    if(success){
+		return res.status(200).send('success');
+	    }else{
+		return res.status(400).send('failed');
+	    }
+	});
+    }
 });
 
 module.exports = router;

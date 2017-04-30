@@ -70,6 +70,44 @@
   },
   {
     "type": "post",
+    "url": "/projects/relation",
+    "title": "like or fellow a project",
+    "description": "<p>set = true to like(fellow) a project, or false to cancel. Must login to post</p>",
+    "name": "Like_Fellow",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "boolean",
+            "optional": false,
+            "field": "set",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pname",
+            "description": "<p>project name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "releation",
+            "description": "<p>(like|fellow) between user and project</p>"
+          }
+        ]
+      }
+    },
+    "group": "Project",
+    "version": "0.0.0",
+    "filename": "routes/projects.js",
+    "groupTitle": "Project"
+  },
+  {
+    "type": "post",
     "url": "/projects/comments",
     "title": "post user comments",
     "name": "PostUserComment",

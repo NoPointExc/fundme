@@ -105,13 +105,21 @@ function comments(projectname, done){
 
 function putComment(projectname, username, time, text, done){
     if(projectname){
-	sql.sql.insert('Comment_project', [username, projectname, time, text], function(){
-	    return done();
-	});
+	sql.sql.insert('Comment_project', [username, projectname, time, text], done);
     }
 }
+
+function setRelation(projectname, username, time, relation, set, done){
+    if(set){
+	sql.sql.insert('User_project', [username, projectname, time, relation], done);
+    }else{
+	sql.sql.remove('User_project', [['uname=?', username], ['pname=?', projectname], ['relation=?',relation]], done);
+    }
+}
+
 
 module.exports.get = get;
 module.exports.detail = detail;
 module.exports.comments = comments;
 module.exports.putComment = putComment;
+module.exports.setRelation = setRelation;
