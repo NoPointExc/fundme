@@ -40,6 +40,31 @@ router.post('/', function(req, res, next){
 });
 
 /**
+ * @api {get} users/fellow get fellowed users
+ * 
+ * @apiParam {string} uname username of fellower
+ * @apiDescription login required. 
+ * @apiGroup user
+ */
+router.get('/fellow', function(req, res, next){
+    var username = req.query.uname;
+    if(!username){
+	return res.status(400).send('incomplete paramters');
+    }else{
+	log.debug(username);
+	user.getFellowing(username, function(success, result){
+	    if(success){
+	        return res.json(result);
+	    }else{
+		return res.status(400).send('failed');
+	    }
+	});	
+    }
+    
+});
+
+
+/**
  * @api {post} users/fellow fellow other user
  * @apiGroup user
  * @apiParam uname username of user to fellow.

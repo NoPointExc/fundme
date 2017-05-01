@@ -419,6 +419,30 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "users/fellow",
+    "title": "get fellowed users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "uname",
+            "description": "<p>username of fellower</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>login required.</p>",
+    "group": "user",
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "user",
+    "name": "GetUsersFellow"
+  },
+  {
+    "type": "get",
     "url": "users/login",
     "title": "get login page",
     "group": "user",

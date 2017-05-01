@@ -40,5 +40,16 @@ function fellow(fellower, fellowed, done){
     }
 }
 
+function getFellowing(username, done){
+    if(username){
+	db.sql.select(['fellowed_uname'], 'Fellow_user',[['fellower_uname = ?', username]], function(error, rows, fields){
+	    return done(true, rows);
+	});		
+    }else{
+	return done(false, null);
+    }
+}
+
 module.exports.save = save;
 module.exports.fellow = fellow;
+module.exports.getFellowing = getFellowing;
