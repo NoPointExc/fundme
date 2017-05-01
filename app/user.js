@@ -32,4 +32,13 @@ function save(username, address, credict_card, done){
     });
 }
 
+function fellow(fellower, fellowed, done){
+    if(fellower && fellowed){
+	db.sql.insert('Fellow_user', [fellower, fellowed], done);	
+    }else{
+	return done(false);
+    }
+}
+
 module.exports.save = save;
+module.exports.fellow = fellow;

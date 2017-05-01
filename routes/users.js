@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('../app/local-passport');
-var profile = require('../app/user-profile');
+var user = require('../app/user');
 
 /**
  * @api {get} users/ get user profile page
@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next){
     var username = passport.authorizedUser(req.session);
     if(username){
-	profile.save(username, req.query.address, req.query.credict_card, onSaved);
+	user.save(username, req.query.address, req.query.credict_card, onSaved);
     }else{
 	log.debug('must login before update profile');
 	res.status(401).send('username must be specified when update profile.');
@@ -36,6 +36,29 @@ router.post('/', function(req, res, next){
 	}else{
 	    res.status(200).send('success');
 	}
+    }
+});
+
+/**
+ * @api {post} users/fellow fellow other user
+ * @apiGroup user
+ * @apiParam uname username of user to fellow.
+ */
+router.post('/fellow', function(req, res,next){
+    var username = passport.authorizedUser(req.session);
+    if(!req.query.uname){
+	return res.status(400).send('request with incomplete paramenaters');
+    }else if(!username){
+	return res.status(401).send('login required');
+    }else{
+	log.debug(username);
+	user.fellow(username, req.query.uname, function(success){
+	    if(success){
+	        return res.status(200).send('success');
+	    }else{
+		return res.status(400).send('failed');
+	    }
+	});	
     }
 });
 

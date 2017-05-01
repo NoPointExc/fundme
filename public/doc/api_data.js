@@ -477,6 +477,28 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "users/fellow",
+    "title": "fellow other user",
+    "group": "user",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "optional": false,
+            "field": "uname",
+            "description": "<p>username of user to fellow.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "user",
+    "name": "PostUsersFellow"
+  },
+  {
+    "type": "post",
     "url": "users/login",
     "title": "login request",
     "description": "<p>post login request</p>",

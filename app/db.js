@@ -149,6 +149,7 @@ function insert(table, values, done){
 	    tmp = tmp + ', ? ';
 	}
 	var sql = 'INSERT INTO ' + table + ' VALUES (' + tmp + ' );'
+	log.debug(sql);
 	sql = mysql.format(sql, values);
 	log.debug(sql);
 	pool.query(sql, function(error, rows, fields){
