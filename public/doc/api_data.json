@@ -190,6 +190,72 @@
   },
   {
     "type": "post",
+    "url": "/projects",
+    "title": "create a new project",
+    "description": "<p>create a new project</p>",
+    "group": "Project",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pname",
+            "description": "<p>project name, required parament.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "desp",
+            "description": "<p>description of the project, default as 'no description given for this project' is not given.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "category",
+            "description": "<p>category of project, default as 'joke' is not given</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "double",
+            "optional": false,
+            "field": "min_fund",
+            "description": "<p>min-value of fund, default as $100 is not given</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "double",
+            "optional": false,
+            "field": "max_fund",
+            "description": "<p>max-value of fund, default as $9000 is not given</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "date",
+            "optional": false,
+            "field": "start_time",
+            "description": "<p>start date of the funding, default as now if now given</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "date",
+            "optional": false,
+            "field": "end_time",
+            "description": "<p>end date of the funding, default is 7 days after start time.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/projects.js",
+    "groupTitle": "Project",
+    "name": "PostProjects"
+  },
+  {
+    "type": "post",
     "url": "/projects/comments",
     "title": "post user comments",
     "name": "PostUserComment",

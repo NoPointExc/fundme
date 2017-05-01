@@ -20,6 +20,11 @@ function get(num, after, category, keyword, done){
     });
 }
 
+//TODO: check start time < end time
+function put(pname, username, desp, category, min_fund, max_fund, start_time, end_time, status, done){
+     sql.sql.insert('Project', [pname, username, desp, category, min_fund, max_fund, 0, start_time, end_time, status], done);
+}
+
 function detail(projectname, username, done){
     var result = {};
     var completed = 0;
@@ -145,6 +150,7 @@ function getUpdates(num, after, type, keyword, done){
 }
 
 module.exports.get = get;
+module.exports.put = put;
 module.exports.detail = detail;
 module.exports.comments = comments;
 module.exports.putComment = putComment;

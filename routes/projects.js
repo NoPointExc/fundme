@@ -37,6 +37,45 @@ router.get('/', function(req, res, next){
 });
 
 /**
+ * @api {post} /projects create a new project
+ * @apiDescription create a new project
+ * @apiGroup Project
+ *
+ * @apiParam {string} pname project name, required parament.
+ * @apiParam {string} desp description of the project, default as 'no description given for this project' is not given.
+ * @apiParam {string} category category of project, default as 'joke' is not given
+ * @apiParam {double} min_fund min-value of fund, default as $100 is not given
+ * @apiParam {double} max_fund max-value of fund, default as $9000 is not given
+ * @apiParam {date}  start_time start date of the funding, default as now if now given
+ * @apiParam {date}  end_time end date of the funding, default is 7 days after start time. 
+ *
+ */
+router.post('/',function(req, res, next){
+    var username = passport.authorizedUser(req.session);
+    if(!req.query.pname){
+	return res.status(400).send('request with incomplete parameter');
+    }else if(!username){
+	return res.status(401).send('login before post a new project');
+    }else{
+	var desp = req.query.desp || 'no description given for this project';
+	var category = req.query.category || 'joke';
+	var min_fund= parseFloat(req.query.min_fund) || 100.0;
+	var max_fund= parseFloat(req.query.max_fund) || 9000.0;
+	var start_time = req.query.start_time || util.now();
+	var end_time = req.query.end_time || util.after(7);
+	project.put(req.query.pname, username, desp, category, min_fund, max_fund, start_time, end_time, 'funding', function(success){
+	    if(success){
+	        return res.status(200).send('success');
+	    }else{
+		return res.status(400).send('failed');
+	    }
+	});	
+    }
+});
+
+
+
+/**
  * @api {get} /projects/detail get project detail
  * @apiDescription project detail and likes and fellow data in json 
  * @apiGroup Project
@@ -108,7 +147,6 @@ router.post('/comments',function(req, res, next){
 	    }
 	});	
     }
-
 });
 
 /**
