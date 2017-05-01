@@ -164,6 +164,13 @@ function putUpdates(username, projectname, time, type, content, done){
     });
 }
 
+function tag(projectname, tag, done){
+    if(projectname && tag){
+	sql.sql.insert('Tag', [projectname, tag], done);
+    }else{
+	return done(false);
+    }
+}
 
 module.exports.get = get;
 module.exports.put = put;
@@ -174,3 +181,4 @@ module.exports.setRelation = setRelation;
 module.exports.pledge = pledge;
 module.exports.getUpdates = getUpdates;
 module.exports.putUpdates = putUpdates;
+module.exports.tag = tag;

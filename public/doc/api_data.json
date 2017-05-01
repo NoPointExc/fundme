@@ -256,6 +256,37 @@
   },
   {
     "type": "post",
+    "url": "/projects/tag",
+    "title": "tag project",
+    "group": "Project",
+    "description": "<p>login not required.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pname",
+            "description": "<p>name of project, required paramenter.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "tag",
+            "description": "<p>tag to add</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/projects.js",
+    "groupTitle": "Project",
+    "name": "PostProjectsTag"
+  },
+  {
+    "type": "post",
     "url": "/projects/updates",
     "title": "post new project updates",
     "group": "Project",

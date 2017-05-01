@@ -265,4 +265,23 @@ router.post('/updates',function(req, res, next){
     }
 });
 
+/**
+ * @api {post} /projects/tag tag project
+ * @apiGroup Project
+ * @apiDescription login not required.
+ * 
+ * @apiParam {string} pname name of project, required paramenter.
+ * @apiParam {string} tag tag to add
+ */
+
+router.post('/tag', function(req, res, next){
+    project.tag(req.query.pname, req.query.tag, function(success){
+	if(success){
+	    return res.status(200).send('success');
+	}else{
+	    return res.status(400).send('failed');
+	}
+    });
+});
+
 module.exports = router;
