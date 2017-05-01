@@ -88,12 +88,13 @@ router.get('/comments',function(req, res, next){
  * @apiName PostUserComment
  * @apiGroup Project
  *
- * @apiParam {String} pname project name to comment. 
+ * @apiParam {string} pname project name to comment. 
+ * @apiParam {string} text comment texts
  */
 router.post('/comments',function(req, res, next){
     log.debug(util.now());
     var username = passport.authorizedUser(req.session);
-    if(!req.query.pname){
+    if(!req.query.pname || !req.query.text){
 	return res.status(400).send('request with uname or pname');
     }else if(!username){
 	return res.status(401).send('login before comment on project');
@@ -135,6 +136,34 @@ router.post('/relation', function(req,res,next){
 	    }
 	});
     }
+});
+
+/**
+ * @api {post} /projects/pledge post pledge
+ * @apiName PostPledge
+ * @apiGroup Project
+ *
+ * @apiParam {string} pname project name to comment.
+ * @apiParam {double} amount of funding
+ */
+router.post('/pledge',function(req, res, next){
+    log.debug(util.now());
+    var username = passport.authorizedUser(req.session);
+    if(!req.query.pname || !req.query.amount){
+	return res.status(400).send('request with incomplete paramenaters');
+    }else if(!username){
+	return res.status(401).send('login before comment on project');
+    }else{
+	var amount = req.query.amount || 0;
+	project.pledge(req.query.pname, username, util.now(),amount, function(success){
+	    if(success){
+	        return res.status(200).send('success');
+	    }else{
+		return res.status(400).send('failed');
+	    }
+	});	
+    }
+
 });
 
 module.exports = router;

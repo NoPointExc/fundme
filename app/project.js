@@ -117,9 +117,15 @@ function setRelation(projectname, username, time, relation, set, done){
     }
 }
 
+function pledge(projectname, username, time, amount, done){
+    if(projectname){
+	sql.sql.insert('Pledge', [username, projectname, time, amount], done);
+    }
+}
 
 module.exports.get = get;
 module.exports.detail = detail;
 module.exports.comments = comments;
 module.exports.putComment = putComment;
 module.exports.setRelation = setRelation;
+module.exports.pledge = pledge;

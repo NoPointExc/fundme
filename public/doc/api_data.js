@@ -108,6 +108,36 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/projects/pledge",
+    "title": "post pledge",
+    "name": "PostPledge",
+    "group": "Project",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pname",
+            "description": "<p>project name to comment.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "double",
+            "optional": false,
+            "field": "amount",
+            "description": "<p>of funding</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/projects.js",
+    "groupTitle": "Project"
+  },
+  {
+    "type": "post",
     "url": "/projects/comments",
     "title": "post user comments",
     "name": "PostUserComment",
@@ -117,10 +147,17 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "string",
             "optional": false,
             "field": "pname",
             "description": "<p>project name to comment.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "text",
+            "description": "<p>comment texts</p>"
           }
         ]
       }
