@@ -123,9 +123,31 @@ function pledge(projectname, username, time, amount, done){
     }
 }
 
+function getUpdates(num, after, type, keyword, done){
+    var conditions = []; 
+    if(after){
+	conditions.push(['start_time < ? ' , after]);
+    }
+    if(type){
+	conditions.push(['type = ? ', type]);
+    }
+    if(keyword){
+	conditions.push(['content LIKE ?', '%'+keyword +'%']);
+	conditions.push(['type = ? ', 'text']);
+    }	
+    sql.project.getUpdates(num, conditions, function (error, rows, fields){
+	if(error){
+	    return done(error, null);
+	}else{
+	    return done(null, rows);
+	}
+    });
+}
+
 module.exports.get = get;
 module.exports.detail = detail;
 module.exports.comments = comments;
 module.exports.putComment = putComment;
 module.exports.setRelation = setRelation;
 module.exports.pledge = pledge;
+module.exports.getUpdates = getUpdates;

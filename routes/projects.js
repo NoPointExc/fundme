@@ -7,10 +7,10 @@ var passport = require('../app/local-passport');
 var util = require('../app/util');
 
 /**
- * @api {get} /projects/detail get projects
+ * @api {get} /projects/ get projects
  * @apiGroup Project
  * @apiDescription from newest to oldest in json format, any paramenters is alternative.
- * @apiParam {number} num 10 by default, from 1 -> INF. 
+ * @apiParam {int} num 10 by default, from 1 -> INF. 
  * @apiParam {String} keyword contains keyword in project description
  * @apiParam {time} after the earlist time
  * @apiParam {string} category project category
@@ -164,6 +164,41 @@ router.post('/pledge',function(req, res, next){
 	});	
     }
 
+});
+
+/**
+ * @api {get} /projects/updates get project updates
+ * @apiGroup Project
+ * @apiDescription from newest to oldest in json format, any paramenters is alternative.
+ * 
+ * @apiParam {string} pname name of project, required paramenter.
+ * @apiParam {int} num 10 by default, from 1 -> INF. 
+ * @apiParam {String} keyword search keyword in text updates
+ * @apiParam {time} after the earlist time
+ * @apiParam {string} type project updates type, can be `text`, `video` and `picture` 
+ */
+router.get('/updates', function(req, res, next){
+    var num = 10;
+    if(!req.query.pname){
+	return res.status(400).send('incomplete paraments');
+    }
+    if(req.query.num){
+	var tmp = parseInt(req.query.num);
+	num = (isNaN(tmp) || tmp <= 0)? num : tmp;
+    }
+    log.debug(req.query.num);
+    log.debug(num);
+    var after = req.query.after || null;
+    var type = req.query.type || null;
+    var keyword = req.query.keyword || null;
+
+    project.getUpdates(num, after, type, keyword, function(error, projects){
+	if(error){
+	    return next(error, null);
+	}else{
+	    return res.json(projects);
+	}
+    });    
 });
 
 module.exports = router;

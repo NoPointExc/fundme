@@ -1,7 +1,7 @@
 define({ "api": [
   {
     "type": "get",
-    "url": "/projects/detail",
+    "url": "/projects/",
     "title": "get projects",
     "group": "Project",
     "description": "<p>from newest to oldest in json format, any paramenters is alternative.</p>",
@@ -10,7 +10,7 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "number",
+            "type": "int",
             "optional": false,
             "field": "num",
             "description": "<p>10 by default, from 1 -&gt; INF.</p>"
@@ -42,7 +42,7 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "routes/projects.js",
     "groupTitle": "Project",
-    "name": "GetProjectsDetail"
+    "name": "GetProjects"
   },
   {
     "type": "get",
@@ -67,6 +67,58 @@ define({ "api": [
     "filename": "routes/projects.js",
     "groupTitle": "Project",
     "name": "GetProjectsDetail"
+  },
+  {
+    "type": "get",
+    "url": "/projects/updates",
+    "title": "get project updates",
+    "group": "Project",
+    "description": "<p>from newest to oldest in json format, any paramenters is alternative.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pname",
+            "description": "<p>name of project, required paramenter.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "num",
+            "description": "<p>10 by default, from 1 -&gt; INF.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "keyword",
+            "description": "<p>search keyword in text updates</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "time",
+            "optional": false,
+            "field": "after",
+            "description": "<p>the earlist time</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "type",
+            "description": "<p>project updates type, can be <code>text</code>, <code>video</code> and <code>picture</code></p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/projects.js",
+    "groupTitle": "Project",
+    "name": "GetProjectsUpdates"
   },
   {
     "type": "post",

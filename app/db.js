@@ -124,6 +124,16 @@ function getProjects(num, fields, done){
     pool.query(sql, done);
 } 
 
+/*Projects updates. 
+ *fields include pname, type(`text`| `video`| `picture`), keyword serach in content
+ * */
+function getUpdates(num, fields, done){
+    var sql = mysql.format('SELECT * FROM Project_update '+ where(fields) +' ORDER BY time DESC LIMIT ? ;', num);
+    log.debug(sql);
+    pool.query(sql, done);
+} 
+
+
 
 function getSelected(fields, table, conditions, done){
     var sql = select(fields) + ' FROM ' + table + ' ' + where(conditions) + ';';
@@ -194,7 +204,8 @@ module.exports.user = {
 };
 
 module.exports.project = {
-    'get':getProjects
+    'get':getProjects,
+    'getUpdates':getUpdates
 };
 
 module.exports.pool = pool;
