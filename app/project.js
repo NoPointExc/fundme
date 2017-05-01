@@ -35,6 +35,8 @@ function detail(projectname, username, done){
 	    return done(error, null);
 	}else if(relation == 'detail'){
 	    result['detail'] = rows[0];
+	}else if(relation == 'tag'){
+	    result['tag'] = rows;
 	}else{ 
 	    log.debug(rows);
 	    result[relation+'Num'] = rows.length;
@@ -50,7 +52,7 @@ function detail(projectname, username, done){
 	    }
 	}
 	completed += 1;
-	if(completed == 3){
+	if(completed == 4){
 	    //log.debug(result);
 	    return done(null, result);
 	}
@@ -66,6 +68,11 @@ function detail(projectname, username, done){
 
     fellowBy(projectname, function(error, rows){
 	return onSqlDone('fellow', error, rows);
+    });
+    
+    //get tags
+    sql.sql.select(['tag'], 'Tag', [['pname = ?', projectname]], function(error, rows, fields){
+	return onSqlDone('tag', error, rows);	
     });
 }
 
