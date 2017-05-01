@@ -352,6 +352,17 @@
   },
   {
     "type": "post",
+    "url": "users/logout",
+    "title": "logout request",
+    "description": "<p>post logout request, login user required</p>",
+    "group": "user",
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "user",
+    "name": "PostUsersLogout"
+  },
+  {
+    "type": "post",
     "url": "users/signup",
     "title": "signup request",
     "description": "<p>post signup request</p>",

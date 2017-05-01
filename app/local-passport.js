@@ -101,8 +101,18 @@ function authorizedUser(session){
     return username;
 }
 
+function logout(session){
+    var username = authorizedUser(session);
+    if(username){
+	session.passport = null;
+	return true;
+    }
+    return false;
+}
+
 passport.use('local-login', new LocalStrategy(verify));
 passport.use('local-signup', new LocalStrategy(signup));
 passport.authorizedUser = authorizedUser;
+passport.logout = logout;
 //log.debug("local-passport initlized");
 module.exports = passport;

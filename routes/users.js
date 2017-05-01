@@ -64,6 +64,19 @@ router.post('/login', passport.authenticate('local-login',
 	    {successRedirect:'/'}));
 
 /**
+ * @api {post} users/logout logout request
+ * @apiDescription post logout request, login user required
+ * @apiGroup user
+ */
+router.post('/logout', function(req, res, next){
+    if(passport.logout(req.session)){
+	res.status(200).send('success');
+    }else{
+	res.status(401).send('failed');
+    } 
+});
+
+/**
  * @api {get} users/signup get signup page
  * @apiGroup user
  *
