@@ -256,6 +256,44 @@
   },
   {
     "type": "post",
+    "url": "/projects/updates",
+    "title": "post new project updates",
+    "group": "Project",
+    "description": "<p>login required.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pname",
+            "description": "<p>name of project, required paramenter.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "type",
+            "description": "<p>project updates type, can be <code>text</code>, <code>video</code> and <code>picture</code></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "content",
+            "optional": false,
+            "field": "url",
+            "description": "<p>of picture or video, actual conent of text type</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/projects.js",
+    "groupTitle": "Project",
+    "name": "PostProjectsUpdates"
+  },
+  {
+    "type": "post",
     "url": "/projects/comments",
     "title": "post user comments",
     "name": "PostUserComment",

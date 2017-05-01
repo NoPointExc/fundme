@@ -239,4 +239,30 @@ router.get('/updates', function(req, res, next){
     });    
 });
 
+/**
+ * @api {post} /projects/updates post new project updates
+ * @apiGroup Project
+ * @apiDescription login required.
+ * 
+ * @apiParam {string} pname name of project, required paramenter.
+ * @apiParam {string} type project updates type, can be `text`, `video` and `picture` 
+ * @apiParam {content} url of picture or video, actual conent of text type
+ */
+router.post('/updates',function(req, res, next){
+    var username = passport.authorizedUser(req.session);
+    if(!req.query.pname || !req.query.content || !req.query.type){
+	return res.status(400).send('request with incomplete paramenaters');
+    }else if(!username){
+	return res.status(401).send('login before comment on project');
+    }else{
+	project.putUpdates(username, req.query.pname, util.now(), req.query.type, req.query.content, function(success){
+	    if(success){
+	        return res.status(200).send('success');
+	    }else{
+		return res.status(400).send('failed');
+	    }
+	});	
+    }
+});
+
 module.exports = router;

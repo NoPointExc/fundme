@@ -22,7 +22,7 @@ function get(num, after, category, keyword, done){
 
 //TODO: check start time < end time
 function put(pname, username, desp, category, min_fund, max_fund, start_time, end_time, status, done){
-     sql.sql.insert('Project', [pname, username, desp, category, min_fund, max_fund, 0, start_time, end_time, status], done);
+    sql.sql.insert('Project', [pname, username, desp, category, min_fund, max_fund, 0, start_time, end_time, status], done);
 }
 
 function detail(projectname, username, done){
@@ -149,6 +149,22 @@ function getUpdates(num, after, type, keyword, done){
     });
 }
 
+function putUpdates(username, projectname, time, type, content, done){
+    //check current user is the owner.
+    sql.project.get(1, [['pname = ?', projectname]], function(error, rows, fields){
+	if(rows && rows.length == 1){
+	    if(rows[0].uname == username){
+		sql.sql.insert('Project_update', [projectname, time, type, content], done);
+	    }else{
+		return done(false);
+	    }
+	}else{
+	    return done(false);
+	}
+    });
+}
+
+
 module.exports.get = get;
 module.exports.put = put;
 module.exports.detail = detail;
@@ -157,3 +173,4 @@ module.exports.putComment = putComment;
 module.exports.setRelation = setRelation;
 module.exports.pledge = pledge;
 module.exports.getUpdates = getUpdates;
+module.exports.putUpdates = putUpdates;
