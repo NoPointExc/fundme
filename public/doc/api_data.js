@@ -47,7 +47,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/projects/detail",
-    "title": "get project detail",
+    "title": "project detail",
     "description": "<p>project detail and likes and fellow data in json</p>",
     "group": "Project",
     "parameter": {
@@ -71,7 +71,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/projects/updates",
-    "title": "get project updates",
+    "title": "project updates",
     "group": "Project",
     "description": "<p>from newest to oldest in json format, any paramenters is alternative.</p>",
     "parameter": {
@@ -123,7 +123,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/projects/relation",
-    "title": "like or fellow a project",
+    "title": "like or fellow",
     "description": "<p>set = true to like(fellow) a project, or false to cancel. Must login to post</p>",
     "name": "Like_Fellow",
     "parameter": {
@@ -161,7 +161,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/projects/pledge",
-    "title": "post pledge",
+    "title": "pledge",
     "name": "PostPledge",
     "group": "Project",
     "parameter": {
@@ -191,7 +191,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/projects",
-    "title": "create a new project",
+    "title": "new project",
     "description": "<p>create a new project</p>",
     "group": "Project",
     "parameter": {
@@ -245,6 +245,13 @@ define({ "api": [
             "optional": false,
             "field": "end_time",
             "description": "<p>end date of the funding, default is 7 days after start time.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "url",
+            "optional": false,
+            "field": "picture",
+            "description": "<p>cover background, default as xingxing's puppy is not given.</p>"
           }
         ]
       }
@@ -257,7 +264,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/projects/rate",
-    "title": "rate project",
+    "title": "rate",
     "group": "Project",
     "description": "<p>login required, rate incompleted project will fail.</p>",
     "parameter": {
@@ -288,7 +295,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/projects/tag",
-    "title": "tag project",
+    "title": "tag",
     "group": "Project",
     "description": "<p>login not required.</p>",
     "parameter": {
@@ -319,7 +326,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/projects/updates",
-    "title": "post new project updates",
+    "title": "project updates",
     "group": "Project",
     "description": "<p>login required.</p>",
     "parameter": {
@@ -357,7 +364,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/projects/comments",
-    "title": "post user comments",
+    "title": "user comments",
     "name": "PostUserComment",
     "group": "Project",
     "parameter": {
@@ -387,7 +394,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/projects/comments",
-    "title": "get user comments",
+    "title": "user comments",
     "name": "getComments",
     "group": "Project",
     "parameter": {

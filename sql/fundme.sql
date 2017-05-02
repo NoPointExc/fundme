@@ -41,6 +41,7 @@ CREATE TABLE `Project`(
     start_time DATETIME NOT NULL, 
     end_time DATETIME NOT NULL, 
     status VARCHAR(20) NOT NULL,
+    picture VARCHAR(500) NOT NULL,
     FOREIGN KEY (`uname`) REFERENCES `Users` (`uname`),
     PRIMARY KEY(pname)
 );

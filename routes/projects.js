@@ -37,7 +37,7 @@ router.get('/', function(req, res, next){
 });
 
 /**
- * @api {post} /projects create a new project
+ * @api {post} /projects new project
  * @apiDescription create a new project
  * @apiGroup Project
  *
@@ -48,6 +48,7 @@ router.get('/', function(req, res, next){
  * @apiParam {double} max_fund max-value of fund, default as $9000 is not given
  * @apiParam {date}  start_time start date of the funding, default as now if now given
  * @apiParam {date}  end_time end date of the funding, default is 7 days after start time. 
+ * @apiParam {url} picture cover background, default as xingxing's puppy is not given.
  *
  */
 router.post('/',function(req, res, next){
@@ -63,7 +64,8 @@ router.post('/',function(req, res, next){
 	var max_fund= parseFloat(req.query.max_fund) || 9000.0;
 	var start_time = req.query.start_time || util.now();
 	var end_time = req.query.end_time || util.after(7);
-	project.put(req.query.pname, username, desp, category, min_fund, max_fund, start_time, end_time, 'funding', function(success){
+	var picture = req.query.picture || 'http://cdn2-www.dogtime.com/assets/uploads/2016/08/corgi-puppy-6.jpg';
+	project.put(req.query.pname, username, desp, category, min_fund, max_fund, start_time, end_time, 'funding', picture, function(success){
 	    if(success){
 	        return res.status(200).send('success');
 	    }else{
@@ -76,7 +78,7 @@ router.post('/',function(req, res, next){
 
 
 /**
- * @api {get} /projects/detail get project detail
+ * @api {get} /projects/detail project detail
  * @apiDescription project detail and likes and fellow data in json 
  * @apiGroup Project
  *
@@ -100,7 +102,7 @@ router.get('/detail', function(req, res, next){
 });
 
 /**
- * @api {get} /projects/comments get user comments
+ * @api {get} /projects/comments user comments
  * @apiName getComments
  * @apiGroup Project
  *
@@ -123,7 +125,7 @@ router.get('/comments',function(req, res, next){
 });
 
 /**
- * @api {post} /projects/comments post user comments
+ * @api {post} /projects/comments user comments
  * @apiName PostUserComment
  * @apiGroup Project
  *
@@ -150,7 +152,7 @@ router.post('/comments',function(req, res, next){
 });
 
 /**
- * @api {post} /projects/relation like or fellow a project
+ * @api {post} /projects/relation like or fellow
  * @apiDescription set = true to like(fellow) a project, or false to cancel. Must login to post
  * @apiName Like&Fellow
  * @apiParam {boolean} set
@@ -177,7 +179,7 @@ router.post('/relation', function(req,res,next){
 });
 
 /**
- * @api {post} /projects/pledge post pledge
+ * @api {post} /projects/pledge pledge
  * @apiName PostPledge
  * @apiGroup Project
  *
@@ -205,7 +207,7 @@ router.post('/pledge',function(req, res, next){
 });
 
 /**
- * @api {get} /projects/updates get project updates
+ * @api {get} /projects/updates project updates
  * @apiGroup Project
  * @apiDescription from newest to oldest in json format, any paramenters is alternative.
  * 
@@ -240,7 +242,7 @@ router.get('/updates', function(req, res, next){
 });
 
 /**
- * @api {post} /projects/updates post new project updates
+ * @api {post} /projects/updates project updates
  * @apiGroup Project
  * @apiDescription login required.
  * 
@@ -266,7 +268,7 @@ router.post('/updates',function(req, res, next){
 });
 
 /**
- * @api {post} /projects/tag tag project
+ * @api {post} /projects/tag tag
  * @apiGroup Project
  * @apiDescription login not required.
  * 
@@ -285,7 +287,7 @@ router.post('/tag', function(req, res, next){
 });
 
 /**
- * @api {post} /projects/rate rate project
+ * @api {post} /projects/rate rate
  * @apiGroup Project
  * @apiDescription login required, rate incompleted project will fail.
  * 
