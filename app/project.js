@@ -179,6 +179,22 @@ function tag(projectname, tag, done){
     }
 }
 
+function rate(username, projectname, time, rate, done){
+    if(projectname && username && rate && time){
+	//check project complete
+	sql.sql.select(['*'], 'Project', [['pname = ?', projectname], ['status = ?', 'completed']], function(error, rows, fields){
+	    if(error || !rows || rows.length == 0){
+		return done(false);
+	    }else{
+		//insert rates
+		sql.sql.insert('Rate', [username, projectname, time, rate], done);
+	    }
+	});
+    }else{
+	return done(false);
+    }
+}
+
 module.exports.get = get;
 module.exports.put = put;
 module.exports.detail = detail;
@@ -189,3 +205,4 @@ module.exports.pledge = pledge;
 module.exports.getUpdates = getUpdates;
 module.exports.putUpdates = putUpdates;
 module.exports.tag = tag;
+module.exports.rate = rate;

@@ -284,4 +284,31 @@ router.post('/tag', function(req, res, next){
     });
 });
 
+/**
+ * @api {post} /projects/rate rate project
+ * @apiGroup Project
+ * @apiDescription login required, rate incompleted project will fail.
+ * 
+ * @apiParam {string} pname name of project, required paramenter.
+ * @apiParam {string} rate rate for project.
+ */
+router.post('/rate', function(req, res, next){
+    var username = passport.authorizedUser(req.session);
+    var rate = parseInt(req.query.rate) || null;
+    if(!req.query.pname || !rate){
+	return res.status(400).send('request with incomplete paramenaters');
+    }else if(!username){
+	return res.status(401).send('login required');
+    }else{
+	project.rate(username, req.query.pname, util.now(), Math.max(rate,5) , function(success){
+	    if(success){
+	        return res.status(200).send('success');
+	    }else{
+		return res.status(400).send('failed');
+	    }
+	});	
+    }
+
+});
+
 module.exports = router;

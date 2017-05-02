@@ -61,7 +61,7 @@ CREATE TABLE `Rate`(
     pname VARCHAR(40) NOT NULL,
     time DATETIME NOT NULL, 
     rate INT NOT NULL,
-    PRIMARY KEY(uname, pname, time),
+    PRIMARY KEY(uname, pname),
     FOREIGN KEY (`pname`) REFERENCES `Pledge` (`pname`),
     FOREIGN KEY (`uname`) REFERENCES `Pledge` (`uname`)
 );

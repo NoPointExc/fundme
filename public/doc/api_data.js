@@ -256,6 +256,37 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/projects/rate",
+    "title": "rate project",
+    "group": "Project",
+    "description": "<p>login required, rate incompleted project will fail.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pname",
+            "description": "<p>name of project, required paramenter.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "rate",
+            "description": "<p>rate for project.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/projects.js",
+    "groupTitle": "Project",
+    "name": "PostProjectsRate"
+  },
+  {
+    "type": "post",
     "url": "/projects/tag",
     "title": "tag project",
     "group": "Project",
