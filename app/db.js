@@ -89,10 +89,20 @@ function putUser(username, address, credict_card){
     return mysql.format('INSERT INTO Users VALUES (?,?,?);', [username, address, credict_card]); 
 }
 
-function updateUser(username, address, credict_card){
+function updateUser(username, address, credict_card, picture, done){
     address = address || null;
     credict_card = credict_card || null;
-    return mysql.format('UPDATE Users SET address = ?, credict_card = ?) WHERE uname = ?;', [address, credict_card, username]); 
+    const tmp ='UPDATE Users SET address = ?, credict_card = ?, picture = ? WHERE uname = ?;'; 
+    var sql = mysql.format(tmp, [address, credict_card, picture, username]); 
+    log.debug(sql);
+    pool.query(sql, function(error, rows, fields){
+	if(error){
+	    log.debug(error);
+	    return done(false);
+	}else{
+	    return done(true);
+	}
+    }); 
 }
 
 function where(fields){
@@ -142,7 +152,6 @@ function getSelected(fields, table, conditions, done){
 }
 
 function insert(table, values, done){
-    log.debug(values);
     if(values && values.length != 0){
 	var tmp = ' ? ';
 	for(i=0; i < values.length - 1; i++){
@@ -189,7 +198,6 @@ function remove(table, conditions, done){
 module.exports.sql ={
     'getUser': getUser,
     'putUser': putUser,
-    'updateUser': updateUser,
     'getReleatedUpdate': getReleatedUpdate,
     'select': getSelected,
     'insert': insert,
@@ -199,6 +207,7 @@ module.exports.sql ={
 module.exports.user = {
     'getAccount': getAccount,
     'putAccount': putAccount,
+    'updateProfile': updateUser,
     'getPledge': getUserPledge,
     'getComment': getUserComment,
     'getFellowedProject':getFellowedProject

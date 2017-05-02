@@ -527,31 +527,31 @@ define({ "api": [
     "type": "post",
     "url": "users/",
     "title": "post user profile",
-    "description": "<p>post user information. Must login before post</p>",
+    "description": "<p>update or save user profiles, login required.</p>",
     "group": "user",
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "uname",
-            "description": "<p>user name</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
+            "type": "string",
             "optional": false,
             "field": "address",
-            "description": "<p>user address</p>"
+            "description": "<p>user address, default as empty if not provided</p>"
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "string",
             "optional": false,
             "field": "credict_card",
-            "description": "<p>users' credict card</p>"
+            "description": "<p>users' credict card, default as empty is not procided.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "url",
+            "optional": false,
+            "field": "picture",
+            "description": "<p>url of profile picture, default as 'https://www.drupal.org/files/profile_default.png' is not provided.</p>"
           }
         ]
       }

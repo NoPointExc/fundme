@@ -14,25 +14,23 @@ router.get('/', function(req, res, next) {
 
 /**
  * @api {post} users/ post user profile
- * @apiDescription post user information. Must login before post 
+ * @apiDescription update or save user profiles, login required.   
  * @apiGroup user
- * @apiParam {String} uname user name
- * @apiParam {String} address user address
- * @apiParam {String} credict_card users' credict card
+ * @apiParam {string} address user address, default as empty if not provided
+ * @apiParam {string} credict_card users' credict card, default as empty is not procided.
+ * @apiParam {url} picture url of profile picture, default as 'https://www.drupal.org/files/profile_default.png' is not provided.
  */
 router.post('/', function(req, res, next){
     var username = passport.authorizedUser(req.session);
     if(username){
-	user.save(username, req.query.address, req.query.credict_card, onSaved);
+	user.save(username, req.query.address, req.query.credict_card, req.query.picture, onSaved);
     }else{
-	log.debug('must login before update profile');
-	res.status(401).send('username must be specified when update profile.');
+	res.status(401).send('login in required.');
     }
     
-    function onSaved(error){
-	if(error){
-	    log.error('error when save profile');
-	    return next(errors);
+    function onSaved(success){
+	if(!success){
+	    res.status(400).send('failed');
 	}else{
 	    res.status(200).send('success');
 	}
