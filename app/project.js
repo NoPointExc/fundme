@@ -11,7 +11,7 @@ function get(num, after, category, keyword, done){
     if(keyword){
 	conditions.push(['description LIKE ?', '%'+keyword +'%']);
     }	
-    sql.project.get(num, conditions, function (error, rows, fields){
+    sql.project.getProjects(num, conditions, function (error, rows, fields){
 	if(error){
 	    return done(error, null);
 	}else{

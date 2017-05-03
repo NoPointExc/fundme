@@ -35,22 +35,18 @@ function getUpdateByProject(projectname, done){
 //3) user_project: fellow or like projects
 //function done(error, news)
 function getUserNews(username, done){
-    var rst = [];
     var count = 0;
+    var rst = [];
     function onSqlDone(error, rows, fields){
 	count++;
-	if(error){
-	    return done(error, null);
-	}else{
-	    //parse comments rows as news
-	    //log.debug(rows);
+	if(!error){
 	    rst = rst.concat(news.newsList(fields[0].table, rows));
 	}
 	if(count == 3){
 	    return done(null, rst);
 	}
     }
-        
+    //tmpDone(null, [1]);
     db.user.getComment(username, onSqlDone);
     db.user.getPledge(username, onSqlDone);
     db.user.getFellowedProject(username, onSqlDone);

@@ -61,21 +61,22 @@ const fellowedUser = 'SELECT fellowed_uname FROM Fellow_user WHERE fellower_unam
 
 //TODO: rename methods from get to query
 function getUserPledge(username, done){
-    var sql = 'SELECT pname, uname, picture, time, amount FROM Pledge NATURAL JOIN Users WHERE uname IN ('+ fellowedUser +');';
-    sql = mysql.format(sql, username);
-    return pool.query(sql, done);
+    //var sql = 'SELECT pname, uname, picture, time, amount FROM Pledge NATURAL JOIN Users WHERE uname IN ('+ fellowedUser +');';
+    const TABLE = 'Pledge NATURAL JOIN Users';
+    const SELECT = ['pname', 'uname', 'picture','time', 'amount'];
+    return getSelected(SELECT, TABLE, [['uname IN (' + fellowedUser + ')', username]], done);
 }
 
 function getUserComment(username, done){
-    sql = 'SELECT uname, picture, pname, time, comment FROM Comment_project NATURAL JOIN Users WHERE uname IN ('+ fellowedUser +');';	
-    sql = mysql.format(sql, [username]);	
-    log.debug(sql);
-    return pool.query(sql, done);
+    const TABLE = 'Comment_project NATURAL JOIN Users';
+    const SELECT = ['pname', 'uname', 'picture', 'time', 'comment'];
+    return getSelected(SELECT, TABLE, [['uname IN (' + fellowedUser + ')', username]], done);
 }
 
 function getFellowedProject(username, done){
-    var sql = mysql.format('SELECT pname, uname, picture, time, relation FROM User_project NATURAL JOIN Users WHERE uname IN ('+ fellowedUser +');', [username]);
-    return pool.query(sql, done);
+    const TABLE = 'User_project NATURAL JOIN Users';
+    const SELECT = ['pname', 'uname', 'picture', 'time', 'relation'];
+    return getSelected(SELECT, TABLE, [['uname IN (' + fellowedUser + ')', username]], done);
 }
 
 
@@ -214,7 +215,7 @@ module.exports.user = {
 };
 
 module.exports.project = {
-    'get':getProjects,
+    'getProjects':getProjects,
     'getUpdates':getUpdates
 };
 

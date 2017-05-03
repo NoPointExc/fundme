@@ -42,13 +42,16 @@ router.get('/project', function(req, res, next){
  */
 router.get('/activities', function(req, res, next){
     var username = req.query.uname || null;
-    
     if(username){
-	updates.getUserNews(username, function(error, news){
-	    res.json(news);
-	}); 			
+	updates.getUserNews(username, function(error, rst){
+	    if(error){
+		return res.status(400).send('failed');
+	    }else{
+		return res.json(rst);
+	    }
+	});	
     }else{
-	res.status(400).send('request with uname');
+	return res.status(400).send('request with uname');
     }
 });
 
