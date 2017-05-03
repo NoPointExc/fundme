@@ -4,15 +4,6 @@ var passport = require('../app/local-passport');
 var user = require('../app/user');
 
 /**
- * @api {get} users/ get user profile page
- * @apiGroup user
- *
- */
-router.get('/', function(req, res, next) {
-    res.send('respond with users infomation page');
-});
-
-/**
  * @api {post} users/ post user profile
  * @apiDescription update or save user profiles, login required.   
  * @apiGroup user
@@ -85,19 +76,6 @@ router.post('/fellow', function(req, res,next){
     }
 });
 
-/**
- * @api {get} users/login get login page
- * @apiGroup user
- *
- */
-router.get('/login', function(req, res, next) {
-    if(passport.authorizeduser(req.session)){
-	res.redirect('/');
-    }else{
-	//TODO: render login page.
-	//res.send('render login page');
-    }
-});
 
 /**
  * @api {post} users/login login request
@@ -106,8 +84,9 @@ router.get('/login', function(req, res, next) {
  * @apiParam {String} uname user name
  * @apiParam {String} password password 
  */
-router.post('/login', passport.authenticate('local-login', 
-	    {successRedirect:'/'}));
+router.post('/login', passport.authenticate('local-login'), function(req, res){
+    res.status(200).send('sucess');
+});
 
 /**
  * @api {post} users/logout logout request
@@ -120,16 +99,6 @@ router.post('/logout', function(req, res, next){
     }else{
 	res.status(401).send('failed');
     } 
-});
-
-/**
- * @api {get} users/signup get signup page
- * @apiGroup user
- *
- */
-router.get('/signup', function(req, res, next) {
-    //TODO:  render sign up page
-    res.send('render signup page');
 });
 
 /**
