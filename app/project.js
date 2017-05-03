@@ -135,8 +135,11 @@ function pledge(projectname, username, time, amount, done){
     }
 }
 
-function getUpdates(num, after, type, keyword, done){
+function getUpdates(pname, num, after, type, keyword, done){
     var conditions = []; 
+    if(pname){
+	conditions.push(['pname = ?', pname]);
+    }
     if(after){
 	conditions.push(['start_time < ? ' , after]);
     }
