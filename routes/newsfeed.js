@@ -34,7 +34,7 @@ router.get('/project', function(req, res, next){
 
 /**
  * @api {get} newsfeed/activities/ get user newsfeed
- * @apiDescription get users activities
+ * @apiDescription get fellowed users' pledges, comments, fellow and likes
  * @apiGroup newsfeed
  *
  * @apiParam {String} uname username name

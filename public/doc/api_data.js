@@ -82,7 +82,7 @@ define({ "api": [
             "type": "string",
             "optional": false,
             "field": "pname",
-            "description": "<p>name of project, required paramenter.</p>"
+            "description": "<p>name of project.</p>"
           },
           {
             "group": "Parameter",
@@ -418,7 +418,7 @@ define({ "api": [
     "type": "get",
     "url": "newsfeed/activities/",
     "title": "get user newsfeed",
-    "description": "<p>get users activities</p>",
+    "description": "<p>get fellowed users' pledges, comments, fellow and likes</p>",
     "group": "newsfeed",
     "parameter": {
       "fields": {
