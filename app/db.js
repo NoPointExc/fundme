@@ -61,20 +61,20 @@ const fellowedUser = 'SELECT fellowed_uname FROM Fellow_user WHERE fellower_unam
 
 //TODO: rename methods from get to query
 function getUserPledge(username, done){
-    var sql = 'SELECT pname, time, amount FROM Pledge WHERE uname IN ('+ fellowedUser +');';
+    var sql = 'SELECT pname, uname, picture, time, amount FROM Pledge NATURAL JOIN Users WHERE uname IN ('+ fellowedUser +');';
     sql = mysql.format(sql, username);
     return pool.query(sql, done);
 }
 
 function getUserComment(username, done){
-    sql = 'SELECT pname, time, comment FROM Comment_project WHERE uname IN ('+ fellowedUser +');';	
+    sql = 'SELECT uname, picture, pname, time, comment FROM Comment_project NATURAL JOIN Users WHERE uname IN ('+ fellowedUser +');';	
     sql = mysql.format(sql, [username]);	
     log.debug(sql);
     return pool.query(sql, done);
 }
 
 function getFellowedProject(username, done){
-    var sql = mysql.format('SELECT pname, time, relation FROM User_project WHERE uname IN ('+ fellowedUser +');', [username]);
+    var sql = mysql.format('SELECT pname, uname, picture, time, relation FROM User_project NATURAL JOIN Users WHERE uname IN ('+ fellowedUser +');', [username]);
     return pool.query(sql, done);
 }
 
