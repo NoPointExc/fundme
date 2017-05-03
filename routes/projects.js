@@ -102,11 +102,12 @@ router.get('/detail', function(req, res, next){
 });
 
 /**
- * @api {get} /projects/comments user comments
- * @apiName getComments
+ * @api {get} /projects/comments get user comments
+ * @apiName Comments
+ * @apiDescription get user's name, picture and comments for given project
  * @apiGroup Project
  *
- * @apiParam {String} pname project name to comment. 
+ * @apiParam {String} pname project name, required param. 
  */
 router.get('/comments',function(req, res, next){
     if(!req.query.pname){

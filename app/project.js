@@ -105,7 +105,7 @@ function fellowBy(projectname, done){
 
 function comments(projectname, done){
     if(projectname){
-	sql.sql.select(['*'], 'Comment_project', [['pname=?', projectname]],function (error, rows, fields){
+	sql.sql.select(['pname', 'uname', 'picture', 'time', 'comment'], 'Comment_project NATURAL JOIN Users', [['pname=?', projectname]],function (error, rows, fields){
 	    if(error){
 		return done(error, null);
 	    }else{

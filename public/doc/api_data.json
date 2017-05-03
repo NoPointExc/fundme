@@ -1,6 +1,30 @@
 [
   {
     "type": "get",
+    "url": "/projects/comments",
+    "title": "get user comments",
+    "name": "Comments",
+    "description": "<p>get user's name, picture and comments for given project</p>",
+    "group": "Project",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "pname",
+            "description": "<p>project name, required param.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/projects.js",
+    "groupTitle": "Project"
+  },
+  {
+    "type": "get",
     "url": "/projects/",
     "title": "get projects",
     "group": "Project",
@@ -383,29 +407,6 @@
             "optional": false,
             "field": "text",
             "description": "<p>comment texts</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "routes/projects.js",
-    "groupTitle": "Project"
-  },
-  {
-    "type": "get",
-    "url": "/projects/comments",
-    "title": "user comments",
-    "name": "getComments",
-    "group": "Project",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "pname",
-            "description": "<p>project name to comment.</p>"
           }
         ]
       }
