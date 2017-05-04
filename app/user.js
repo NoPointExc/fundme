@@ -80,11 +80,13 @@ function getFollows(username, relation, done){
 
 function getPledges(username, projectname, done){
     if(username){
-	var conditions = [['uname = ?', username]];
+	var conditions = [['Pledge.uname = ?', username]];
 	if(projectname){
-	    conditions.push(['pname = ? ' , projectname]);
+	    conditions.push(['Pledge.pname = ? ' , projectname]);
 	}
-	db.sql.select(['*'], 'Pledge', conditions, function(error, rows, fields){
+	var out = ['Pledge.uname', 'Pledge.pname', 'time', 'amount', 'picture', 'status'];
+	const table = 'Pledge JOIN Project ON Pledge.pname=Project.pname';
+	db.sql.select(out, table, conditions, function(error, rows, fields){
 	    if(error){
 		return done(false, null);
 	    }else{

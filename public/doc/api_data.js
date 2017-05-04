@@ -654,8 +654,8 @@ define({ "api": [
     "success": {
       "examples": [
         {
-          "title": "success-response: http://localhost:3000/users/pledge/?pname=A wall",
-          "content": "[\n{\n  \"uname\": \"Jiayang\",\n  \"pname\": \"A Wall\",\n  \"time\": \"1970-01-01T05:00:02.000Z\",\n  \"amount\": 200\n}\n]",
+          "title": "success-response: http://localhost:3000/users/pledge/?uname=Jiayang",
+          "content": "[\n {\n   \"uname\": \"Jiayang\",\n   \"pname\": \"A Wall\",\n   \"time\": \"1970-01-01T05:00:02.000Z\",\n   \"amount\": 200,\n   \"picture\": \"https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg\",\n   \"status\": \"completed\"\n },\n {\n   \"uname\": \"Jiayang\",\n   \"pname\": \"Buy me a game\",\n   \"time\": \"1970-01-01T05:00:02.000Z\",\n   \"amount\": 300,\n   \"picture\": \"https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg\",\n   \"status\": \"funding\"\n },\n {\n   \"uname\": \"Jiayang\",\n   \"pname\": \"Database Project\",\n   \"time\": \"1970-01-01T05:00:02.000Z\",\n   \"amount\": 0.2,\n   \"picture\": \"https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg\",\n   \"status\": \"funding\"\n },\n {\n   \"uname\": \"Jiayang\",\n   \"pname\": \"New Shield\",\n   \"time\": \"2016-01-03T17:04:24.000Z\",\n   \"amount\": 2.99,\n   \"picture\": \"https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg\",\n   \"status\": \"completed\"\n },\n {\n   \"uname\": \"Jiayang\",\n   \"pname\": \"New suite\",\n   \"time\": \"2016-01-03T17:04:24.000Z\",\n   \"amount\": 100,\n   \"picture\": \"https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg\",\n   \"status\": \"funding\"\n }\n]",
           "type": "json"
         }
       ]

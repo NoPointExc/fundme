@@ -118,15 +118,49 @@ router.post('/follow', function(req, res,next){
  * @apiParam {string} uname required.
  * @apiDescription login in required. return pledges records 
  * @apiGroup user
- * @apiSuccessExample {json} success-response: http://localhost:3000/users/pledge/?pname=A wall
- * [
- * {
- *   "uname": "Jiayang",
- *   "pname": "A Wall",
- *   "time": "1970-01-01T05:00:02.000Z",
- *   "amount": 200
- * }
- * ]
+ * @apiSuccessExample {json} success-response: http://localhost:3000/users/pledge/?uname=Jiayang
+ *[
+ *  {
+ *    "uname": "Jiayang",
+ *    "pname": "A Wall",
+ *    "time": "1970-01-01T05:00:02.000Z",
+ *    "amount": 200,
+ *    "picture": "https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg",
+ *    "status": "completed"
+ *  },
+ *  {
+ *    "uname": "Jiayang",
+ *    "pname": "Buy me a game",
+ *    "time": "1970-01-01T05:00:02.000Z",
+ *    "amount": 300,
+ *    "picture": "https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg",
+ *    "status": "funding"
+ *  },
+ *  {
+ *    "uname": "Jiayang",
+ *    "pname": "Database Project",
+ *    "time": "1970-01-01T05:00:02.000Z",
+ *    "amount": 0.2,
+ *    "picture": "https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg",
+ *    "status": "funding"
+ *  },
+ *  {
+ *    "uname": "Jiayang",
+ *    "pname": "New Shield",
+ *    "time": "2016-01-03T17:04:24.000Z",
+ *    "amount": 2.99,
+ *    "picture": "https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg",
+ *    "status": "completed"
+ *  },
+ *  {
+ *    "uname": "Jiayang",
+ *    "pname": "New suite",
+ *    "time": "2016-01-03T17:04:24.000Z",
+ *    "amount": 100,
+ *    "picture": "https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg",
+ *    "status": "funding"
+ *  }
+ *] 
  */
 router.get('/pledge', function(req, res, next){
  var username = req.query.uname;
