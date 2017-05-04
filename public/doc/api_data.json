@@ -72,7 +72,7 @@
     "type": "get",
     "url": "/projects/detail",
     "title": "project detail",
-    "description": "<p>project detail and likes and fellow data in json</p>",
+    "description": "<p>project table, likes/fellow and tags in json</p>",
     "group": "Project",
     "parameter": {
       "fields": {
@@ -86,6 +86,15 @@
           }
         ]
       }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n  \"detail\": {\n    \"pname\": \"New suite\",\n    \"uname\": \"Iron Man\",\n    \"description\": \"I broke, but I want a new suit\",\n    \"category\": \"joke\",\n    \"min_fund\": 2000,\n    \"max_fund\": 9999.99,\n    \"current_fund\": 100,\n    \"start_time\": \"2016-01-03T17:04:23.000Z\",\n    \"end_time\": \"2018-01-04T17:04:23.000Z\",\n    \"status\": \"funding\",\n    \"picture\": \"https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg\"\n  },\n  \"fellowNum\": 0,\n  \"fellow\": false,\n  \"likeNum\": 1,\n  \"like\": false,\n  \"tag\": [\n    {\n      \"tag\": \"impossible\"\n    },\n    {\n      \"tag\": \"jazz\"\n    }\n  ]\n}",
+          "type": "json"
+        }
+      ]
     },
     "version": "0.0.0",
     "filename": "routes/projects.js",

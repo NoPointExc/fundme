@@ -79,10 +79,37 @@ router.post('/',function(req, res, next){
 
 /**
  * @api {get} /projects/detail project detail
- * @apiDescription project detail and likes and fellow data in json 
+ * @apiDescription project table, likes/fellow and tags in json 
  * @apiGroup Project
- *
  * @apiParam {String} pname project name
+ * @apiSuccessExample {json} Success-Response:
+ * {
+  "detail": {
+    "pname": "New suite",
+    "uname": "Iron Man",
+    "description": "I broke, but I want a new suit",
+    "category": "joke",
+    "min_fund": 2000,
+    "max_fund": 9999.99,
+    "current_fund": 100,
+    "start_time": "2016-01-03T17:04:23.000Z",
+    "end_time": "2018-01-04T17:04:23.000Z",
+    "status": "funding",
+    "picture": "https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg"
+  },
+  "fellowNum": 0,
+  "fellow": false,
+  "likeNum": 1,
+  "like": false,
+  "tag": [
+    {
+      "tag": "impossible"
+    },
+    {
+      "tag": "jazz"
+    }
+  ]
+}
  */
 router.get('/detail', function(req, res, next){
     var username = passport.authorizedUser(req.session);

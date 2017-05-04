@@ -128,7 +128,7 @@ function select(fields){
     return sql;
 }
 
-/*Projects Releated. */
+/*Projects list. */
 function getProjects(num, fields, done){
     var sql = mysql.format('SELECT * FROM Project '+ where(fields) +' ORDER BY start_time DESC LIMIT ? ;', num);
     log.debug(sql);
@@ -215,7 +215,7 @@ module.exports.user = {
 };
 
 module.exports.project = {
-    'getProjects':getProjects,
+    'get':getProjects,
     'getUpdates':getUpdates
 };
 
