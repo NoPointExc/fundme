@@ -32,7 +32,7 @@ function getUpdateByProject(projectname, done){
 //get user related events.
 //1) Comments.
 //2) Pledges.
-//3) user_project: fellow or like projects
+//3) user_project: follow or like projects
 //function done(error, news)
 function getUserNews(username, done){
     var count = 0;
@@ -49,7 +49,7 @@ function getUserNews(username, done){
     //tmpDone(null, [1]);
     db.user.getComment(username, onSqlDone);
     db.user.getPledge(username, onSqlDone);
-    db.user.getFellowedProject(username, onSqlDone);
+    db.user.getFollowedProject(username, onSqlDone);
 }
 
 module.exports.getUpdatesByUser = getUpdatesByUser;
