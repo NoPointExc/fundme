@@ -1,6 +1,7 @@
 var db = require('./db');
 var config = require('./config');
 log = config.log();
+const randomPuppy = require('random-puppy');
 
 function get(username, done){
     if(username){
@@ -26,8 +27,14 @@ function save(username, address, credict_card, picture, done){
 		if(rows.length == 0){
 		    address = address || null;
 		    credict_card = credict_card||null;
-		    picture = picture||'https://www.drupal.org/files/profile_default.png';
-		    return db.sql.insert('Users', [username, address, credict_card, picture], done);
+		    //picture = picture||'https://www.drupal.org/files/profile_default.png';
+		    if(!picture){
+			randomPuppy().then(function(url){
+			    return db.sql.insert('Users', [username, address, credict_card, url], done);
+			});
+		    }else{
+			return db.sql.insert('Users', [username, address, credict_card, picture], done);
+		    }
 		}else{
 		    log.debug(rows);
 		    address = address || rows[0].address;
