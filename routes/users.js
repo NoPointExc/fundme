@@ -105,6 +105,79 @@ router.post('/follow', function(req, res,next){
 
 
 /**
+ * @api {get} users/pledge get pledge records
+ * 
+ * @apiParam {string} pname not required. default return all pledges if not given
+ * @apiDescription login in required. return pledges records 
+ * @apiGroup user
+ * @apiSuccessExample {json} success-response: http://localhost:3000/users/pledge/?pname=A wall
+ * [
+ * {
+ *   "uname": "Jiayang",
+ *   "pname": "A Wall",
+ *   "time": "1970-01-01T05:00:02.000Z",
+ *   "amount": 200
+ * }
+ * ]
+ */
+router.get('/pledge', function(req, res, next){
+ var username = passport.authorizedUser(req.session);
+    if(username){
+	user.pledges(username, req.query.pname, function(success, rst){
+	    if(!success){
+		res.status(400).send('error');
+	    }else{
+		res.json(rst);
+	    }
+	});
+    }else{
+	res.status(401).send('login in required.');
+    }
+});
+
+/**
+ * @api {get} users/ get user profile
+ * @apiDescription get user profile, login required.   
+ * @apiGroup user
+ */
+router.get('/', function(req, res, next){
+    var username = passport.authorizedUser(req.session);
+    if(username){
+	user.get(username, function(error, profile){
+	    if(error){
+		res.status(400).send('error');
+	    }else{
+		res.json(profile);
+	    }
+	});
+    }else{
+	res.status(401).send('login in required.');
+    }
+});
+
+/**
+ * @api {get} users/ get user profile
+ * @apiDescription get user profile, login required.   
+ * @apiGroup user
+ */
+router.get('/', function(req, res, next){
+    var username = passport.authorizedUser(req.session);
+    if(username){
+	user.get(username, function(error, profile){
+	    if(error){
+		res.status(400).send('error');
+	    }else{
+		res.json(profile);
+	    }
+	});
+    }else{
+	res.status(401).send('login in required.');
+    }
+    
+});
+
+
+/**
  * @api {post} users/login login request
  * @apiDescription post login request
  * @apiGroup user

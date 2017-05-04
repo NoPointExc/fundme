@@ -499,6 +499,28 @@
   },
   {
     "type": "get",
+    "url": "users/",
+    "title": "get user profile",
+    "description": "<p>get user profile, login required.</p>",
+    "group": "user",
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "user",
+    "name": "GetUsers"
+  },
+  {
+    "type": "get",
+    "url": "users/",
+    "title": "get user profile",
+    "description": "<p>get user profile, login required.</p>",
+    "group": "user",
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "user",
+    "name": "GetUsers"
+  },
+  {
+    "type": "get",
     "url": "users/follow",
     "title": "get followed or following users",
     "parameter": {
@@ -527,6 +549,39 @@
     "filename": "routes/users.js",
     "groupTitle": "user",
     "name": "GetUsersFollow"
+  },
+  {
+    "type": "get",
+    "url": "users/pledge",
+    "title": "get pledge records",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pname",
+            "description": "<p>not required. default return all pledges if not given</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>login in required. return pledges records</p>",
+    "group": "user",
+    "success": {
+      "examples": [
+        {
+          "title": "success-response: http://localhost:3000/users/pledge/?pname=A wall",
+          "content": "[\n{\n  \"uname\": \"Jiayang\",\n  \"pname\": \"A Wall\",\n  \"time\": \"1970-01-01T05:00:02.000Z\",\n  \"amount\": 200\n}\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "user",
+    "name": "GetUsersPledge"
   },
   {
     "type": "post",
