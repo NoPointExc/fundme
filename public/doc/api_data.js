@@ -186,7 +186,7 @@ define({ "api": [
             "type": "boolean",
             "optional": false,
             "field": "set",
-            "description": ""
+            "description": "<p>true or false to set or unset a relation</p>"
           },
           {
             "group": "Parameter",
@@ -577,6 +577,39 @@ define({ "api": [
     "filename": "routes/users.js",
     "groupTitle": "user",
     "name": "GetUsersFollow"
+  },
+  {
+    "type": "get",
+    "url": "users/like",
+    "title": "get like records",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pname",
+            "description": "<p>not required. default return all likes if not given</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>login in required. return likes records</p>",
+    "group": "user",
+    "success": {
+      "examples": [
+        {
+          "title": "http://localhost:3000/users/likes/ ",
+          "content": "[\n {\n   \"pname\": \"A Wall\",\n   \"owner\": \"Qin Shi Huang\",\n   \"description\": \"2300 Years ago, I built a wall to defense my contry\",\n   \"category\": \"joke\",\n   \"status\": \"completed\",\n   \"picture\": \"https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg\"\n },\n {\n   \"pname\": \"New suite\",\n   \"owner\": \"Iron Man\",\n   \"description\": \"I broke, but I want a new suit\",\n   \"category\": \"joke\",\n   \"status\": \"funding\",\n   \"picture\": \"https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg\"\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "user",
+    "name": "GetUsersLike"
   },
   {
     "type": "get",

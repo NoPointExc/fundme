@@ -203,7 +203,7 @@ router.post('/comments',function(req, res, next){
  * @api {post} /projects/relation like or follow
  * @apiDescription set = true to like(follow) a project, or false to cancel. Must login to post
  * @apiName Like&Follow
- * @apiParam {boolean} set
+ * @apiParam {boolean} set true or false to set or unset a relation
  * @apiParam {string} pname project name
  * @apiParam {string} releation(like|follow) between user and project
  * @apiGroup Project

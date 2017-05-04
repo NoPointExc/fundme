@@ -185,6 +185,48 @@ router.get('/rates', function(req, res, next){
     }
 });
 
+
+/**
+ * @api {get} users/like get like records
+ * 
+ * @apiParam {string} pname not required. default return all likes if not given
+ * @apiDescription login in required. return likes records 
+ * @apiGroup user
+ * @apiSuccessExample {json} http://localhost:3000/users/likes/ 
+ * [
+ *  {
+ *    "pname": "A Wall",
+ *    "owner": "Qin Shi Huang",
+ *    "description": "2300 Years ago, I built a wall to defense my contry",
+ *    "category": "joke",
+ *    "status": "completed",
+ *    "picture": "https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg"
+ *  },
+ *  {
+ *    "pname": "New suite",
+ *    "owner": "Iron Man",
+ *    "description": "I broke, but I want a new suit",
+ *    "category": "joke",
+ *    "status": "funding",
+ *    "picture": "https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg"
+ *  }
+ *]
+ */
+router.get('/likes', function(req, res, next){
+ var username = passport.authorizedUser(req.session);
+    if(username){
+	user.likes(username, function(success, rst){
+	    if(!success){
+		res.status(400).send('error');
+	    }else{
+		res.json(rst);
+	    }
+	});
+    }else{
+	res.status(401).send('login in required.');
+    }
+});
+
 /**
  * @api {get} users/ get user profile
  * @apiDescription get user profile, login required.   

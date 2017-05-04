@@ -114,9 +114,26 @@ function getRates(username, projectname, done){
     }
 }
 
+function getLikes(uname, done){
+    if(!uname){
+	return done(false, null);
+    }
+    var table = 'User_project JOIN Project ON User_project.pname=Project.pname';
+    var out = ['Project.pname', 'Project.uname AS owner','description', 'category', 'status ', 'picture '];
+    sql.sql.select(out, table, [['User_project.uname=?', uname], ['relation=?','like']],function (error, rows, fields){
+	if(error){
+	    return done(false, null);
+	}else{
+	    return done(true, rows);
+	}
+    }); 
+}
+
+
 module.exports.save = save;
 module.exports.follow = follow;
 module.exports.getFollows = getFollows;
 module.exports.get = get;
 module.exports.pledges = getPledges;
 module.exports.rates = getRates;
+module.exports.likes = getLikes;
