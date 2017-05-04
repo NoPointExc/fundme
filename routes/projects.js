@@ -153,6 +153,26 @@ router.get('/comments',function(req, res, next){
 });
 
 /**
+ * @api {get} /projects/categories get all categories
+ * @apiGroup Project
+ *@apiSuccessExample {json} http://localhost:3000/projects/categories/ 
+ * [
+ * {
+ *   "category": "joke"
+ * }
+ *]
+ */
+router.get('/categories',function(req, res, next){
+	project.categories(function(success, result){
+	    if(!success){
+		res.status(400).send('failed');
+	    }else{
+		res.json(result);
+	    }
+	});	
+});
+
+/**
  * @api {post} /projects/comments user comments
  * @apiName PostUserComment
  * @apiGroup Project

@@ -198,6 +198,16 @@ function rate(username, projectname, time, rate, done){
     }
 }
 
+function getCategories(done){
+    sql.sql.select(['DISTINCT category'], 'Project', null, function(error, rows, fields){
+	if(error || !rows){
+	    return done(false, null);
+	}else{
+	    return done(true, rows);
+	}
+    });
+}
+
 module.exports.get = get;
 module.exports.put = put;
 module.exports.detail = detail;
@@ -209,3 +219,4 @@ module.exports.getUpdates = getUpdates;
 module.exports.putUpdates = putUpdates;
 module.exports.tag = tag;
 module.exports.rate = rate;
+module.exports.categories = getCategories;

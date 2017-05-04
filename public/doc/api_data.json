@@ -70,6 +70,25 @@
   },
   {
     "type": "get",
+    "url": "/projects/categories",
+    "title": "get all categories",
+    "group": "Project",
+    "success": {
+      "examples": [
+        {
+          "title": "http://localhost:3000/projects/categories/ ",
+          "content": "[\n{\n  \"category\": \"joke\"\n}\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/projects.js",
+    "groupTitle": "Project",
+    "name": "GetProjectsCategories"
+  },
+  {
+    "type": "get",
     "url": "/projects/detail",
     "title": "project detail",
     "description": "<p>project table, likes/follow and tags in json</p>",
