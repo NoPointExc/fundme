@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS `Tag`;
 DROP TABLE IF EXISTS `Project_update`;
 DROP TABLE IF EXISTS `User_project`;
 DROP TABLE IF EXISTS `Comment_project`;
-DROP TABLE IF EXISTS `Fellow_user`;
+DROP TABLE IF EXISTS `Follow_user`;
 DROP TABLE IF EXISTS `Project`;
 DROP TABLE IF EXISTS `Account`;
 DROP TABLE IF EXISTS `Users`;
@@ -97,7 +97,7 @@ CREATE TABLE `Project_update`(
 );
 
 -- Project User Relation 
--- relation can be `fellow`, `like`
+-- relation can be `follow`, `like`
 CREATE TABLE `User_project`(
     uname VARCHAR(40) NOT NULL,
     pname VARCHAR(40) NOT NULL,
@@ -109,11 +109,11 @@ CREATE TABLE `User_project`(
 );
 
 -- User User Relation
-CREATE TABLE `Fellow_user`(
-    fellowed_uname VARCHAR(40) NOT NULL,
-    fellower_uname VARCHAR(40) NOT NULL,
-    PRIMARY KEY(fellowed_uname, fellower_uname),
-    FOREIGN KEY (`fellowed_uname`) REFERENCES `Users` (`uname`),
-    FOREIGN KEY (`fellower_uname`) REFERENCES `Users` (`uname`)
+CREATE TABLE `Follow_user`(
+    followed_uname VARCHAR(40) NOT NULL,
+    follower_uname VARCHAR(40) NOT NULL,
+    PRIMARY KEY(followed_uname, follower_uname),
+    FOREIGN KEY (`followed_uname`) REFERENCES `Users` (`uname`),
+    FOREIGN KEY (`follower_uname`) REFERENCES `Users` (`uname`)
 );
 

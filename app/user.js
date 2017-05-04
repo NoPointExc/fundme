@@ -52,24 +52,24 @@ function update(username, address, credict_card, picture, done){
     }
 }
 
-function fellow(fellower, fellowed, done){
-    if(fellower && fellowed){
-	db.sql.insert('Fellow_user', [fellower, fellowed], done);	
+function follow(follower, followed, done){
+    if(follower && followed){
+	db.sql.insert('Follow_user', [follower, followed], done);	
     }else{
 	return done(false);
     }
 }
 
-function getFellows(username, relation, done){
+function getFollows(username, relation, done){
     log.debug(relation);
     if(username){
-	var out = 'fellower_uname';   
-	var condition = 'fellowed_uname = ?';
+	var out = 'follower_uname';   
+	var condition = 'followed_uname = ?';
 	if(relation == 'following'){
-	    out = 'fellowed_uname';
-	    condition = 'fellower_uname = ?';   
+	    out = 'followed_uname';
+	    condition = 'follower_uname = ?';   
 	}
-	db.sql.select([out], 'Fellow_user',[[condition, username]], function(error, rows, fields){
+	db.sql.select([out], 'Follow_user',[[condition, username]], function(error, rows, fields){
 	    return done(true, rows);
 	});		
     }else{
@@ -78,6 +78,6 @@ function getFellows(username, relation, done){
 }
 
 module.exports.save = save;
-module.exports.fellow = fellow;
-module.exports.getFellows = getFellows;
+module.exports.follow = follow;
+module.exports.getFollows = getFollows;
 module.exports.get = get;

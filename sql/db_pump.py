@@ -21,8 +21,8 @@ def create_pledge(row):
 def create_rate(row):
     return 'INSERT INTO  Rate VALUES ' + '(' + str(row)[1:-1] + ');'  
 
-def create_fellow_user(row):
-    return 'INSERT INTO  Fellow_user VALUES ' + '(' + str(row)[1:-1] + ');'  
+def create_follow_user(row):
+    return 'INSERT INTO  Follow_user VALUES ' + '(' + str(row)[1:-1] + ');'  
 
 def create_user_project(row):
     return 'INSERT INTO  User_project VALUES ' + '(' + str(row)[1:-1] + ');'  
@@ -57,7 +57,7 @@ print_all('./sql/data/project', create_project)
 print_all('./sql/data/tag',create_tag)
 print_all('./sql/data/pledge',create_pledge)
 print_all('./sql/data/rate',create_rate)
-print_all('./sql/data/fellow_user', create_fellow_user)
+print_all('./sql/data/follow_user', create_follow_user)
 print_all('./sql/data/comment_project', create_comment_project)
 print_all('./sql/data/project_update', create_project_update)
 print_all('./sql/data/user_project', create_user_project)

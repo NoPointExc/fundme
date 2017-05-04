@@ -72,7 +72,7 @@
     "type": "get",
     "url": "/projects/detail",
     "title": "project detail",
-    "description": "<p>project table, likes/fellow and tags in json</p>",
+    "description": "<p>project table, likes/follow and tags in json</p>",
     "group": "Project",
     "parameter": {
       "fields": {
@@ -91,7 +91,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n  \"detail\": {\n    \"pname\": \"New suite\",\n    \"uname\": \"Iron Man\",\n    \"description\": \"I broke, but I want a new suit\",\n    \"category\": \"joke\",\n    \"min_fund\": 2000,\n    \"max_fund\": 9999.99,\n    \"current_fund\": 100,\n    \"start_time\": \"2016-01-03T17:04:23.000Z\",\n    \"end_time\": \"2018-01-04T17:04:23.000Z\",\n    \"status\": \"funding\",\n    \"picture\": \"https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg\"\n  },\n  \"fellowNum\": 0,\n  \"fellow\": false,\n  \"likeNum\": 1,\n  \"like\": false,\n  \"tag\": [\n    {\n      \"tag\": \"impossible\"\n    },\n    {\n      \"tag\": \"jazz\"\n    }\n  ]\n}",
+          "content": "{\n  \"detail\": {\n    \"pname\": \"New suite\",\n    \"uname\": \"Iron Man\",\n    \"description\": \"I broke, but I want a new suit\",\n    \"category\": \"joke\",\n    \"min_fund\": 2000,\n    \"max_fund\": 9999.99,\n    \"current_fund\": 100,\n    \"start_time\": \"2016-01-03T17:04:23.000Z\",\n    \"end_time\": \"2018-01-04T17:04:23.000Z\",\n    \"status\": \"funding\",\n    \"picture\": \"https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg\"\n  },\n  \"followNum\": 0,\n  \"follow\": false,\n  \"likeNum\": 1,\n  \"like\": false,\n  \"tag\": [\n    {\n      \"tag\": \"impossible\"\n    },\n    {\n      \"tag\": \"jazz\"\n    }\n  ]\n}",
           "type": "json"
         }
       ]
@@ -156,9 +156,9 @@
   {
     "type": "post",
     "url": "/projects/relation",
-    "title": "like or fellow",
-    "description": "<p>set = true to like(fellow) a project, or false to cancel. Must login to post</p>",
-    "name": "Like_Fellow",
+    "title": "like or follow",
+    "description": "<p>set = true to like(follow) a project, or false to cancel. Must login to post</p>",
+    "name": "Like_Follow",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -181,7 +181,7 @@
             "type": "string",
             "optional": false,
             "field": "releation",
-            "description": "<p>(like|fellow) between user and project</p>"
+            "description": "<p>(like|follow) between user and project</p>"
           }
         ]
       }
@@ -499,8 +499,8 @@
   },
   {
     "type": "get",
-    "url": "users/fellow",
-    "title": "get fellowed users",
+    "url": "users/follow",
+    "title": "get followed or following users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -509,17 +509,24 @@
             "type": "string",
             "optional": false,
             "field": "uname",
-            "description": "<p>username of fellower</p>"
+            "description": "<p>username</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "relation",
+            "description": "<p>[followedBy|following], if not given, default as followedBy.</p>"
           }
         ]
       }
     },
-    "description": "<p>login required.</p>",
+    "description": "<p>login required. return followd or following users name and picture.</p>",
     "group": "user",
     "version": "0.0.0",
     "filename": "routes/users.js",
     "groupTitle": "user",
-    "name": "GetUsersFellow"
+    "name": "GetUsersFollow"
   },
   {
     "type": "post",
@@ -561,8 +568,8 @@
   },
   {
     "type": "post",
-    "url": "users/fellow",
-    "title": "fellow other user",
+    "url": "users/follow",
+    "title": "follow other user",
     "group": "user",
     "parameter": {
       "fields": {
@@ -571,7 +578,7 @@
             "group": "Parameter",
             "optional": false,
             "field": "uname",
-            "description": "<p>username of user to fellow.</p>"
+            "description": "<p>username of user to follow.</p>"
           }
         ]
       }
@@ -579,7 +586,7 @@
     "version": "0.0.0",
     "filename": "routes/users.js",
     "groupTitle": "user",
-    "name": "PostUsersFellow"
+    "name": "PostUsersFollow"
   },
   {
     "type": "post",

@@ -49,14 +49,14 @@ router.get('/', function(req, res, next){
 });
 
 /**
- * @api {get} users/fellow get fellowed or fellowing users
+ * @api {get} users/follow get followed or following users
  * 
  * @apiParam {string} uname username
- * @apiParam {string} relation [fellowedBy|fellowing], if not given, default as fellowedBy.
- * @apiDescription login required. return fellowd or fellowing users name and picture. 
+ * @apiParam {string} relation [followedBy|following], if not given, default as followedBy.
+ * @apiDescription login required. return followd or following users name and picture. 
  * @apiGroup user
  */
-router.get('/fellow', function(req, res, next){
+router.get('/follow', function(req, res, next){
     var username = req.query.uname;
     if(!username){
 	return res.status(400).send('incomplete paramters');
@@ -64,11 +64,11 @@ router.get('/fellow', function(req, res, next){
 	log.debug(username);
 	var relation = req.query.relation;
 	log.debug(relation != 'following');
-	if(relation != 'fellowedBy' && relation != 'following'){
-	    relation = 'fellowedBy';
+	if(relation != 'followedBy' && relation != 'following'){
+	    relation = 'followedBy';
 	}
 	log.debug(relation);
-	user.getFellows(username, relation, function(success, result){
+	user.getFollows(username, relation, function(success, result){
 	    if(success){
 	        return res.json(result);
 	    }else{
@@ -81,11 +81,11 @@ router.get('/fellow', function(req, res, next){
 
 
 /**
- * @api {post} users/fellow fellow other user
+ * @api {post} users/follow follow other user
  * @apiGroup user
- * @apiParam uname username of user to fellow.
+ * @apiParam uname username of user to follow.
  */
-router.post('/fellow', function(req, res,next){
+router.post('/follow', function(req, res,next){
     var username = passport.authorizedUser(req.session);
     if(!req.query.uname){
 	return res.status(400).send('request with incomplete paramenaters');
@@ -93,7 +93,7 @@ router.post('/fellow', function(req, res,next){
 	return res.status(401).send('login required');
     }else{
 	log.debug(username);
-	user.fellow(username, req.query.uname, function(success){
+	user.follow(username, req.query.uname, function(success){
 	    if(success){
 	        return res.status(200).send('success');
 	    }else{

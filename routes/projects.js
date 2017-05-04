@@ -79,7 +79,7 @@ router.post('/',function(req, res, next){
 
 /**
  * @api {get} /projects/detail project detail
- * @apiDescription project table, likes/fellow and tags in json 
+ * @apiDescription project table, likes/follow and tags in json 
  * @apiGroup Project
  * @apiParam {String} pname project name
  * @apiSuccessExample {json} Success-Response:
@@ -97,8 +97,8 @@ router.post('/',function(req, res, next){
     "status": "funding",
     "picture": "https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg"
   },
-  "fellowNum": 0,
-  "fellow": false,
+  "followNum": 0,
+  "follow": false,
   "likeNum": 1,
   "like": false,
   "tag": [
@@ -180,17 +180,17 @@ router.post('/comments',function(req, res, next){
 });
 
 /**
- * @api {post} /projects/relation like or fellow
- * @apiDescription set = true to like(fellow) a project, or false to cancel. Must login to post
- * @apiName Like&Fellow
+ * @api {post} /projects/relation like or follow
+ * @apiDescription set = true to like(follow) a project, or false to cancel. Must login to post
+ * @apiName Like&Follow
  * @apiParam {boolean} set
  * @apiParam {string} pname project name
- * @apiParam {string} releation(like|fellow) between user and project
+ * @apiParam {string} releation(like|follow) between user and project
  * @apiGroup Project
  */
 router.post('/relation', function(req,res,next){
     var username = passport.authorizedUser(req.session);
-    if(!req.query.pname ||!req.query.relation || (req.query.relation!='like' && req.query.relation != 'fellow')|| (req.query.set != 'true' && req.query.set != 'false') ){
+    if(!req.query.pname ||!req.query.relation || (req.query.relation!='like' && req.query.relation != 'follow')|| (req.query.set != 'true' && req.query.set != 'false') ){
 	return res.status(400).send('request with pname and like');
     }else if(!username){
 	return res.status(401).send('login before this post');

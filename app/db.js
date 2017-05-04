@@ -56,27 +56,27 @@ function getUpdate(projectname){
 }
 
 
-/*Users'comment, pledge, like and fellow*/
-const fellowedUser = 'SELECT fellowed_uname FROM Fellow_user WHERE fellower_uname = ?';
+/*Users'comment, pledge, like and follow*/
+const followedUser = 'SELECT followed_uname FROM Follow_user WHERE follower_uname = ?';
 
 //TODO: rename methods from get to query
 function getUserPledge(username, done){
-    //var sql = 'SELECT pname, uname, picture, time, amount FROM Pledge NATURAL JOIN Users WHERE uname IN ('+ fellowedUser +');';
+    //var sql = 'SELECT pname, uname, picture, time, amount FROM Pledge NATURAL JOIN Users WHERE uname IN ('+ followedUser +');';
     const TABLE = 'Pledge NATURAL JOIN Users';
     const SELECT = ['pname', 'uname', 'picture','time', 'amount'];
-    return getSelected(SELECT, TABLE, [['uname IN (' + fellowedUser + ')', username]], done);
+    return getSelected(SELECT, TABLE, [['uname IN (' + followedUser + ')', username]], done);
 }
 
 function getUserComment(username, done){
     const TABLE = 'Comment_project NATURAL JOIN Users';
     const SELECT = ['pname', 'uname', 'picture', 'time', 'comment'];
-    return getSelected(SELECT, TABLE, [['uname IN (' + fellowedUser + ')', username]], done);
+    return getSelected(SELECT, TABLE, [['uname IN (' + followedUser + ')', username]], done);
 }
 
-function getFellowedProject(username, done){
+function getFollowedProject(username, done){
     const TABLE = 'User_project NATURAL JOIN Users';
     const SELECT = ['pname', 'uname', 'picture', 'time', 'relation'];
-    return getSelected(SELECT, TABLE, [['uname IN (' + fellowedUser + ')', username]], done);
+    return getSelected(SELECT, TABLE, [['uname IN (' + followedUser + ')', username]], done);
 }
 
 
@@ -211,7 +211,7 @@ module.exports.user = {
     'updateProfile': updateUser,
     'getPledge': getUserPledge,
     'getComment': getUserComment,
-    'getFellowedProject':getFellowedProject
+    'getFollowedProject':getFollowedProject
 };
 
 module.exports.project = {

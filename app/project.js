@@ -66,8 +66,8 @@ function detail(projectname, username, done){
 	return onSqlDone('like', error, rows);
     });
 
-    fellowBy(projectname, function(error, rows){
-	return onSqlDone('fellow', error, rows);
+    followBy(projectname, function(error, rows){
+	return onSqlDone('follow', error, rows);
     });
     
     //get tags
@@ -90,11 +90,11 @@ function likeBy(projectname, done){
 }
 
 
-function fellowBy(projectname, done){
+function followBy(projectname, done){
     if(!projectname){
 	return done(null, null);
     }
-    sql.sql.select(['uname'], 'User_project', [['pname=?', projectname],['relation=?','fellow']],function (error, rows, fields){
+    sql.sql.select(['uname'], 'User_project', [['pname=?', projectname],['relation=?','follow']],function (error, rows, fields){
 	if(error){
 	    return done(error, null);
 	}else{
