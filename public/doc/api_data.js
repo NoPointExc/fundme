@@ -34,6 +34,13 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "owner",
+            "description": "<p>owner's name</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "int",
             "optional": false,
             "field": "num",
@@ -41,7 +48,7 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "string",
             "optional": false,
             "field": "keyword",
             "description": "<p>contains keyword in project description</p>"

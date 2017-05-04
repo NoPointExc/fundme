@@ -1,6 +1,6 @@
 sql = require('./db');
 
-function get(num, after, category, keyword, done){
+function get(num, after, category, keyword, owner, done){
     var conditions = []; 
     if(after){
 	conditions.push(['start_time < ? ' , after]);
@@ -10,7 +10,10 @@ function get(num, after, category, keyword, done){
     }
     if(keyword){
 	conditions.push(['description LIKE ?', '%'+keyword +'%']);
-    }	
+    }
+    if(owner){
+	conditions.push(['uname = ?', owner]);
+    }
     sql.project.get(num, conditions, function (error, rows, fields){
 	if(error){
 	    return done(error, null);

@@ -10,8 +10,9 @@ var util = require('../app/util');
  * @api {get} /projects/ get projects
  * @apiGroup Project
  * @apiDescription from newest to oldest in json format, any paramenters is alternative.
+ * @apiParam {string} owner owner's name
  * @apiParam {int} num 10 by default, from 1 -> INF. 
- * @apiParam {String} keyword contains keyword in project description
+ * @apiParam {string} keyword contains keyword in project description
  * @apiParam {time} after the earlist time
  * @apiParam {string} category project category
  */
@@ -26,8 +27,8 @@ router.get('/', function(req, res, next){
     var after = req.query.after || null;
     var category = req.query.category || null;
     var keyword = req.query.keyword || null;
-
-    project.get(num, after, category, keyword, function(error, projects){
+    var owner = req.query.owner || null;
+    project.get(num, after, category, keyword, owner, function(error, projects){
 	if(error){
 	    next(error, null);
 	}else{
