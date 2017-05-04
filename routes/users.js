@@ -85,7 +85,7 @@ router.post('/fellow', function(req, res,next){
  * @apiParam {String} password password 
  */
 router.post('/login', passport.authenticate('local-login'), function(req, res){
-    res.status(200).send('sucess');
+    res.status(200).send('success');
 });
 
 /**
@@ -108,7 +108,8 @@ router.post('/logout', function(req, res, next){
  * @apiParam {String} uname user name
  * @apiParam {String} password password 
  */
-router.post('/signup', passport.authenticate('local-signup', 
-	    {successRedirect:'/' }));
+router.post('/signup', passport.authenticate('local-signup'), function(req, res){
+    res.status(200).send('success');
+});
 
 module.exports = router;
