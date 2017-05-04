@@ -69,7 +69,8 @@ function getFollows(username, relation, done){
 	    out = 'followed_uname';
 	    condition = 'follower_uname = ?';   
 	}
-	db.sql.select([out], 'Follow_user',[[condition, username]], function(error, rows, fields){
+	var table = 'Follow_user JOIN Users ON Follow_user.'+out+'=Users.uname';
+	db.sql.select([out, 'picture'], table,[[condition, username]], function(error, rows, fields){
 	    return done(true, rows);
 	});		
     }else{

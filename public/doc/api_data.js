@@ -564,6 +564,15 @@ define({ "api": [
     },
     "description": "<p>login required. return followd or following users name and picture.</p>",
     "group": "user",
+    "success": {
+      "examples": [
+        {
+          "title": "success response: http://localhost:3000/users/follow/?uname=Jiayang",
+          "content": "[\n{\n  \"follower_uname\": \"BobInBrooklyn\",\n  \"picture\": \"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png\"\n}\n]",
+          "type": "json"
+        }
+      ]
+    },
     "version": "0.0.0",
     "filename": "routes/users.js",
     "groupTitle": "user",

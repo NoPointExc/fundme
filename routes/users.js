@@ -55,6 +55,13 @@ router.get('/', function(req, res, next){
  * @apiParam {string} relation [followedBy|following], if not given, default as followedBy.
  * @apiDescription login required. return followd or following users name and picture. 
  * @apiGroup user
+ * @apiSuccessExample {json} success response: http://localhost:3000/users/follow/?uname=Jiayang
+ * [
+ * {
+ *   "follower_uname": "BobInBrooklyn",
+ *   "picture": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+ * }
+ *]
  */
 router.get('/follow', function(req, res, next){
     var username = req.query.uname;
@@ -228,6 +235,7 @@ router.get('/', function(req, res, next){
  * @apiParam {String} password password 
  */
 router.post('/login', passport.authenticate('local-login'), function(req, res){
+    log.debug(res);
     res.status(200).send('success');
 });
 
