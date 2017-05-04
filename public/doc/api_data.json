@@ -591,6 +591,13 @@
             "optional": false,
             "field": "pname",
             "description": "<p>not required. default return all likes if not given</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "uname",
+            "description": "<p>required.</p>"
           }
         ]
       }
@@ -624,6 +631,13 @@
             "optional": false,
             "field": "pname",
             "description": "<p>not required. default return all pledges if not given</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "uname",
+            "description": "<p>required.</p>"
           }
         ]
       }

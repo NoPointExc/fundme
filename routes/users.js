@@ -115,6 +115,7 @@ router.post('/follow', function(req, res,next){
  * @api {get} users/pledge get pledge records
  * 
  * @apiParam {string} pname not required. default return all pledges if not given
+ * @apiParam {string} uname required.
  * @apiDescription login in required. return pledges records 
  * @apiGroup user
  * @apiSuccessExample {json} success-response: http://localhost:3000/users/pledge/?pname=A wall
@@ -128,7 +129,7 @@ router.post('/follow', function(req, res,next){
  * ]
  */
 router.get('/pledge', function(req, res, next){
- var username = passport.authorizedUser(req.session);
+ var username = req.query.uname;
     if(username){
 	user.pledges(username, req.query.pname, function(success, rst){
 	    if(!success){
@@ -138,7 +139,7 @@ router.get('/pledge', function(req, res, next){
 	    }
 	});
     }else{
-	res.status(401).send('login in required.');
+	res.status(400).send('uname required.');
     }
 });
 
@@ -190,6 +191,7 @@ router.get('/rates', function(req, res, next){
  * @api {get} users/like get like records
  * 
  * @apiParam {string} pname not required. default return all likes if not given
+ * @apiParam {string} uname required.
  * @apiDescription login in required. return likes records 
  * @apiGroup user
  * @apiSuccessExample {json} http://localhost:3000/users/likes/ 
@@ -213,7 +215,7 @@ router.get('/rates', function(req, res, next){
  *]
  */
 router.get('/likes', function(req, res, next){
- var username = passport.authorizedUser(req.session);
+ var username = req.query.uname;
     if(username){
 	user.likes(username, function(success, rst){
 	    if(!success){
@@ -223,7 +225,7 @@ router.get('/likes', function(req, res, next){
 	    }
 	});
     }else{
-	res.status(401).send('login in required.');
+	res.status(400).send('uname required.');
     }
 });
 
