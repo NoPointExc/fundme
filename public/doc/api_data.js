@@ -480,7 +480,8 @@ define({ "api": [
   {
     "type": "get",
     "url": "users/",
-    "title": "get user profile page",
+    "title": "get user profile",
+    "description": "<p>get user profile, login required.</p>",
     "group": "user",
     "version": "0.0.0",
     "filename": "routes/users.js",
@@ -510,26 +511,6 @@ define({ "api": [
     "filename": "routes/users.js",
     "groupTitle": "user",
     "name": "GetUsersFellow"
-  },
-  {
-    "type": "get",
-    "url": "users/login",
-    "title": "get login page",
-    "group": "user",
-    "version": "0.0.0",
-    "filename": "routes/users.js",
-    "groupTitle": "user",
-    "name": "GetUsersLogin"
-  },
-  {
-    "type": "get",
-    "url": "users/signup",
-    "title": "get signup page",
-    "group": "user",
-    "version": "0.0.0",
-    "filename": "routes/users.js",
-    "groupTitle": "user",
-    "name": "GetUsersSignup"
   },
   {
     "type": "post",

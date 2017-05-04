@@ -29,6 +29,26 @@ router.post('/', function(req, res, next){
 });
 
 /**
+ * @api {get} users/ get user profile
+ * @apiDescription get user profile, login required.   
+ * @apiGroup user
+ */
+router.get('/', function(req, res, next){
+    var username = passport.authorizedUser(req.session);
+    if(username){
+	user.get(username, function(error, profile){
+	    if(error){
+		res.status(400).send('error');
+	    }else{
+		res.json(profile);
+	    }
+	});
+    }else{
+	res.status(401).send('login in required.');
+    }
+});
+
+/**
  * @api {get} users/fellow get fellowed users
  * 
  * @apiParam {string} uname username of fellower

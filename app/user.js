@@ -2,6 +2,20 @@ var db = require('./db');
 var config = require('./config');
 log = config.log();
 
+function get(username, done){
+    if(username){
+	db.sql.select(['*'], 'Users', [['uname = ?', username]], function(error, rows, fields){
+	    if(error || !rows || rows.length != 1){
+		return done(error, null);
+	    }else{
+		return done(null, rows[0]);
+	    }
+	});
+    }else{
+	return done(error, null);
+    } 
+}
+
 function save(username, address, credict_card, picture, done){
     if(username){
 	db.sql.select(['address', 'credict_card', 'picture'], 'Users', [['uname = ?', username]], function(error, rows, fields){
@@ -59,3 +73,4 @@ function getFellowing(username, done){
 module.exports.save = save;
 module.exports.fellow = fellow;
 module.exports.getFellowing = getFellowing;
+module.exports.get = get;
