@@ -317,6 +317,11 @@ router.post('/login', passport.authenticate('local-login'), function(req, res){
     res.status(200).send('success');
 });
 
+router.post('/github/login', passport.authenticate('github-login'), function(req, res){
+    log.debug(res);
+    res.status(200).send('success');
+});
+
 /**
  * @api {post} users/logout logout request
  * @apiDescription post logout request, login user required
