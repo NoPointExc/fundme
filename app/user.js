@@ -60,9 +60,16 @@ function fellow(fellower, fellowed, done){
     }
 }
 
-function getFellowing(username, done){
+function getFellows(username, relation, done){
+    log.debug(relation);
     if(username){
-	db.sql.select(['fellowed_uname'], 'Fellow_user',[['fellower_uname = ?', username]], function(error, rows, fields){
+	var out = 'fellower_uname';   
+	var condition = 'fellowed_uname = ?';
+	if(relation == 'following'){
+	    out = 'fellowed_uname';
+	    condition = 'fellower_uname = ?';   
+	}
+	db.sql.select([out], 'Fellow_user',[[condition, username]], function(error, rows, fields){
 	    return done(true, rows);
 	});		
     }else{
@@ -72,5 +79,5 @@ function getFellowing(username, done){
 
 module.exports.save = save;
 module.exports.fellow = fellow;
-module.exports.getFellowing = getFellowing;
+module.exports.getFellows = getFellows;
 module.exports.get = get;

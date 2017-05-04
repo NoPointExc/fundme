@@ -49,10 +49,11 @@ router.get('/', function(req, res, next){
 });
 
 /**
- * @api {get} users/fellow get fellowed users
+ * @api {get} users/fellow get fellowed or fellowing users
  * 
- * @apiParam {string} uname username of fellower
- * @apiDescription login required. 
+ * @apiParam {string} uname username
+ * @apiParam {string} relation [fellowedBy|fellowing], if not given, default as fellowedBy.
+ * @apiDescription login required. return fellowd or fellowing users name and picture. 
  * @apiGroup user
  */
 router.get('/fellow', function(req, res, next){
@@ -61,7 +62,13 @@ router.get('/fellow', function(req, res, next){
 	return res.status(400).send('incomplete paramters');
     }else{
 	log.debug(username);
-	user.getFellowing(username, function(success, result){
+	var relation = req.query.relation;
+	log.debug(relation != 'following');
+	if(relation != 'fellowedBy' && relation != 'following'){
+	    relation = 'fellowedBy';
+	}
+	log.debug(relation);
+	user.getFellows(username, relation, function(success, result){
 	    if(success){
 	        return res.json(result);
 	    }else{
