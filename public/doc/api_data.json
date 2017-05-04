@@ -584,6 +584,39 @@
     "name": "GetUsersPledge"
   },
   {
+    "type": "get",
+    "url": "users/rate",
+    "title": "get rate records",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pname",
+            "description": "<p>not required. default return all rates if not given</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>login in required. return rates records</p>",
+    "group": "user",
+    "success": {
+      "examples": [
+        {
+          "title": "success-response: http://localhost:3000/users/rate/",
+          "content": "[\n {\n   \"uname\": \"Jiayang\",\n   \"pname\": \"Buy me a game\",\n   \"time\": \"1970-01-01T05:00:02.000Z\",\n   \"rate\": 5\n },\n {\n   \"uname\": \"Jiayang\",\n   \"pname\": \"Database Project\",\n   \"time\": \"1970-01-01T05:00:02.000Z\",\n   \"rate\": 5\n },\n {\n   \"uname\": \"Jiayang\",\n   \"pname\": \"New Shield\",\n   \"time\": \"2016-01-03T17:04:24.000Z\",\n   \"rate\": 1\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "user",
+    "name": "GetUsersRate"
+  },
+  {
     "type": "post",
     "url": "users/",
     "title": "post user profile",

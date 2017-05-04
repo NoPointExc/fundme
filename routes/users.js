@@ -136,6 +136,49 @@ router.get('/pledge', function(req, res, next){
 });
 
 /**
+ * @api {get} users/rate get rate records
+ * 
+ * @apiParam {string} pname not required. default return all rates if not given
+ * @apiDescription login in required. return rates records 
+ * @apiGroup user
+ * @apiSuccessExample {json} success-response: http://localhost:3000/users/rate/
+ * [
+ *  {
+ *    "uname": "Jiayang",
+ *    "pname": "Buy me a game",
+ *    "time": "1970-01-01T05:00:02.000Z",
+ *    "rate": 5
+ *  },
+ *  {
+ *    "uname": "Jiayang",
+ *    "pname": "Database Project",
+ *    "time": "1970-01-01T05:00:02.000Z",
+ *    "rate": 5
+ *  },
+ *  {
+ *    "uname": "Jiayang",
+ *    "pname": "New Shield",
+ *    "time": "2016-01-03T17:04:24.000Z",
+ *    "rate": 1
+ *  }
+ *]
+*/
+router.get('/rates', function(req, res, next){
+ var username = passport.authorizedUser(req.session);
+    if(username){
+	user.rates(username, req.query.pname, function(success, rst){
+	    if(!success){
+		res.status(400).send('error');
+	    }else{
+		res.json(rst);
+	    }
+	});
+    }else{
+	res.status(401).send('login in required.');
+    }
+});
+
+/**
  * @api {get} users/ get user profile
  * @apiDescription get user profile, login required.   
  * @apiGroup user

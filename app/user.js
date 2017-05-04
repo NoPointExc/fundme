@@ -95,8 +95,27 @@ function getPledges(username, projectname, done){
     }
 }
 
+function getRates(username, projectname, done){
+    if(username){
+	var conditions = [['uname = ?', username]];
+	if(projectname){
+	    conditions.push(['pname = ? ' , projectname]);
+	}
+	db.sql.select(['*'], 'Rate', conditions, function(error, rows, fields){
+	    if(error){
+		return done(false, null);
+	    }else{
+		return done(true, rows);
+	    }
+	});
+    }else{
+	return done(false, null);
+    }
+}
+
 module.exports.save = save;
 module.exports.follow = follow;
 module.exports.getFollows = getFollows;
 module.exports.get = get;
 module.exports.pledges = getPledges;
+module.exports.rates = getRates;
