@@ -1,7 +1,7 @@
 #pname,uname,description,category, min_fund, max_fund,start_time, end_time, status(funding|completed|failed|working)
-New suite; Iron Man;I broke, but I want a new suit; joke; 2000.0; 9999.99; 0.0;2016-01-03 12:04:23; 2018-01-04 12:04:23; funding;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
+New suite; Iron Man;I broke, but I want a new suit; cloth; 2000.0; 9999.99; 0.0;2016-01-03 12:04:23; 2018-01-04 12:04:23; funding;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
 
-New Shield; Captain Amercian; I can put your name in my shield if you fund me; joke; 20.0; 99.99; 0.0;2016-01-03 12:04:23; 2017-02-04 12:04:23; completed;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
+New Shield; Captain Amercian; I can put your name in my shield if you fund me; cloth; 20.0; 99.99; 0.0;2016-01-03 12:04:23; 2017-02-04 12:04:23; completed;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
 
 A Wall; Qin Shi Huang;2300 Years ago, I built a wall to defense my contry; joke; 2.0; 66666666.99; 0.0;1970-01-01 00:00:01; 1970-01-02 00:00:00; completed;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
 
@@ -10,3 +10,9 @@ Buy me a xbox; Jiayang;To learn jazz, I want a xbox.; joke; 20.0; 99.99; 0.0;197
 Buy me a game; Jiayang; I also need a jazz game to play; joke; 200.0; 9999.99; 0.0;1970-01-01 00:00:01; 2019-01-02 00:00:00; funding;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
 
 Database Project; Yancheng; Give him a xbox when he complete the db project; joke; 20.0; 99.99; 0.0;1970-01-01 00:00:01; 2020-01-02 00:00:00; funding;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
+
+The Art of Stranski; Jiayang; A 100 page, hardback art book on Lorenzo Etherington's fictional 1940's illustrated opus, STRANSKI. Includes 3D chapter and 3D glasses!; art; 10.0; 20.0; 0; 2016-05-05 00:00:00;2018-05-05 00:00:00; funding;https://ksr-ugc.imgix.net/assets/016/178/637/c0af43d0453740505e1dc10c9943ab46_original.jpg?w=680&fit=max&v=1491614320&auto=format&q=92&s=a068cc5a86a89e2dc9bd5bd3cd291f3e
+
+Heroes of Land, Air & Sea; Yancheng; An RTS inspired 4X big box board game with miniatures and 3-D constructs! Easy to learn and easy to play for 1-6* players.; game; 10.0;20;0;  2017-05-05 00:00:00;2018-05-05 00:00:00; funding;https://ksr-ugc.imgix.net/assets/016/469/071/85a9ece47b2cfd4e99022a1b93cbb878_original.jpg?w=680&fit=max&v=1493595736&auto=format&q=92&s=b700496aa71a7f61a82237e3a036ba18
+
+Loop , Stay Connected. Stay Safe; Yancheng; Loop is a beautiful ring with a personal alarm that keeps you close to those that love you when you need help.; art; 10.0;20;0;  2017-05-05 00:00:00;2018-05-05 00:00:00;funding;https://ksr-ugc.imgix.net/assets/016/316/757/62d6756754bde473e4df66372359f1d3_original.jpg?w=680&fit=max&v=1492615779&auto=format&q=92&s=4b81313510ba102977d130d02f62116a
