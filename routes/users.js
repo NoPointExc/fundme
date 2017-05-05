@@ -9,14 +9,14 @@ var user = require('../app/user');
  * @apiDescription update or save user profiles, login required.   
  * @apiGroup user
  * @apiParam {string} address user address, default as empty if not provided
- * @apiParam {string} credict_card users' credict card, default as empty is not procided.
+ * @apiParam {string} credit_card users' credit card, default as empty is not procided.
  * @apiParam {url} picture url of profile picture, default as 'https://www.drupal.org/files/profile_default.png' is not provided.
  */
 router.post('/', function(req, res, next){
     //log.debug(req);
     var username = passport.authorizedUser(req.session);
     if(username){
-	user.save(username, req.query.address, req.query.credict_card, req.query.picture, onSaved);
+	user.save(username, req.query.address, req.query.credit_card, req.query.picture, onSaved);
     }else{
 	res.status(401).send('login in required.');
     }

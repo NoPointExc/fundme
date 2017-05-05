@@ -84,17 +84,17 @@ function getUser(username){
     return "SELECT * FROM `Users` WHERE `uname`=" + pool.escape(username) + ";";
 }
 
-function putUser(username, address, credict_card){
+function putUser(username, address, credit_card){
     address = address || null;
-    credict_card = credict_card || null;
-    return mysql.format('INSERT INTO Users VALUES (?,?,?);', [username, address, credict_card]); 
+    credit_card = credit_card || null;
+    return mysql.format('INSERT INTO Users VALUES (?,?,?);', [username, address, credit_card]); 
 }
 
-function updateUser(username, address, credict_card, picture, done){
+function updateUser(username, address, credit_card, picture, done){
     address = address || null;
-    credict_card = credict_card || null;
-    const tmp ='UPDATE Users SET address = ?, credict_card = ?, picture = ? WHERE uname = ?;'; 
-    var sql = mysql.format(tmp, [address, credict_card, picture, username]); 
+    credit_card = credit_card || null;
+    const tmp ='UPDATE Users SET address = ?, credit_card = ?, picture = ? WHERE uname = ?;'; 
+    var sql = mysql.format(tmp, [address, credit_card, picture, username]); 
     log.debug(sql);
     pool.query(sql, function(error, rows, fields){
 	if(error){

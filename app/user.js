@@ -17,30 +17,30 @@ function get(username, done){
     } 
 }
 
-function save(username, address, credict_card, picture, done){
+function save(username, address, credit_card, picture, done){
     if(username){
-	db.sql.select(['address', 'credict_card', 'picture'], 'Users', [['uname = ?', username]], function(error, rows, fields){
+	db.sql.select(['address', 'credit_card', 'picture'], 'Users', [['uname = ?', username]], function(error, rows, fields){
 	    if(error){
 		log.debug(error);
 		return done(false);
 	    }else{
 		if(rows.length == 0){
 		    address = address || null;
-		    credict_card = credict_card||null;
+		    credit_card = credit_card||null;
 		    //picture = picture||'https://www.drupal.org/files/profile_default.png';
 		    if(!picture){
 			randomPuppy().then(function(url){
-			    return db.sql.insert('Users', [username, address, credict_card, url], done);
+			    return db.sql.insert('Users', [username, address, credit_card, url], done);
 			});
 		    }else{
-			return db.sql.insert('Users', [username, address, credict_card, picture], done);
+			return db.sql.insert('Users', [username, address, credit_card, picture], done);
 		    }
 		}else{
 		    log.debug(rows);
 		    address = address || rows[0].address;
-		    credict_card = credict_card || rows[0].credict_card;
+		    credit_card = credit_card || rows[0].credit_card;
 		    picture = picture || rows[0].picture;
-		    return update(username, address, credict_card, picture, done); 
+		    return update(username, address, credit_card, picture, done); 
 		}
 	    }
 	});
@@ -49,10 +49,10 @@ function save(username, address, credict_card, picture, done){
     }
 }
 
-function update(username, address, credict_card, picture, done){
-    log.debug('username=' + username + ' address=' + address + ' credict=' + credict_card + ' pic=' + picture);
-    if(username && (address || credict_card || picture)){
-	db.user.updateProfile(username, address, credict_card, picture, done);	
+function update(username, address, credit_card, picture, done){
+    log.debug('username=' + username + ' address=' + address + ' credit=' + credit_card + ' pic=' + picture);
+    if(username && (address || credit_card || picture)){
+	db.user.updateProfile(username, address, credit_card, picture, done);	
     }else{
 	log.debug('lack paramete');
 	return done(false);
