@@ -1,7 +1,7 @@
 #pname,uname,description,category, min_fund, max_fund,start_time, end_time, status(funding|completed|failed|working)
 New suite; Iron Man;I broke, but I want a new suit; cloth; 2000.0; 9999.99; 0.0;2016-01-03 12:04:23; 2018-01-04 12:04:23; funding;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
 
-New Shield; Captain Amercian; I can put your name in my shield if you fund me; cloth; 20.0; 99.99; 0.0;2016-01-03 12:04:23; 2017-02-04 12:04:23; completed;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
+New Shield; Captain Amercian; I can put your name in my shield if you fund me; cloth; 20.0; 99.99; 0.0;2016-01-03 12:04:23; 2017-02-04 12:04:23; completed;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Captain_America%27s_shield.svg/1024px-Captain_America%27s_shield.svg.png
 
 A Wall; Qin Shi Huang;2300 Years ago, I built a wall to defense my contry; joke; 2.0; 66666666.99; 0.0;1970-01-01 00:00:01; 1970-01-02 00:00:00; completed;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
 
