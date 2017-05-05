@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('../app/local-passport');
+var github = require('../app/github-passport');
 var user = require('../app/user');
 
 /**
@@ -12,6 +13,7 @@ var user = require('../app/user');
  * @apiParam {url} picture url of profile picture, default as 'https://www.drupal.org/files/profile_default.png' is not provided.
  */
 router.post('/', function(req, res, next){
+    //log.debug(req);
     var username = passport.authorizedUser(req.session);
     if(username){
 	user.save(username, req.query.address, req.query.credict_card, req.query.picture, onSaved);
@@ -317,9 +319,15 @@ router.post('/login', passport.authenticate('local-login'), function(req, res){
     res.status(200).send('success');
 });
 
-router.post('/github/login', passport.authenticate('github-login'), function(req, res){
-    log.debug(res);
-    res.status(200).send('success');
+router.get('/login/github', github.authenticate('github-login'));
+
+router.get('/login/github/return', 
+  github.authenticate('github-login', { failureRedirect: '/?error=failed' }),
+  function(req, res) {
+    log.debug('github login return');
+      //log.debug('github return' + req);
+    //log.debug(req.session);
+      res.redirect('/');
 });
 
 /**

@@ -12,10 +12,13 @@ const MAX_PWD = 38;
 const MIN_PWD = 1;
 
 passport.serializeUser(function(username, done) {
+   // log.debug(username);
+    log.debug('serilize-local');
     done(null, username);
 });
 
 passport.deserializeUser(function(username, done) {
+    //log.debug(username);
     done(null, username);
 });
 
@@ -112,23 +115,6 @@ function logout(session){
 
 passport.use('local-login', new LocalStrategy(verify));
 passport.use('local-signup', new LocalStrategy(signup));
-
-const github = {
-    clientID: '8777061ab9710807ffc1',
-    clientSecret: '50da71821a60d9ce71d464405bf9bad976d32b0f',
-    callbackURL: 'http://localhost:3000/login/github/return'
-};
-
-passport.use('github-login',new Strategy(github,
-  function(accessToken, refreshToken, profile, cb) {
-    // In this example, the user's github profile is supplied as the user
-    // record.  In a production-quality application, the github profile should
-    // be associated with a user record in the application's database, which
-    // allows for account linking and authentication with other identity
-    // providers.
-    return cb(null, profile);
-  }));
-
 passport.authorizedUser = authorizedUser;
 passport.logout = logout;
 //log.debug("local-passport initlized");
