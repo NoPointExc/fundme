@@ -1,15 +1,15 @@
 #pname,uname,description,category, min_fund, max_fund,start_time, end_time, status(funding|completed|failed|working)
-New suite; Iron Man;I broke, but I want a new suit; cloth; 2000.0; 9999.99; 0.0;2016-01-03 12:04:23; 2018-01-04 12:04:23; funding;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
+New suite; Iron Man;I broke, but I want a new suit; cloth; 2000.0; 9999.99; 0.0;2016-01-03 12:04:23; 2018-01-04 12:04:23; funding;https://ksr-ugc.imgix.net/assets/016/443/915/1d0032b4bb26c20c0aaa7084feeb7ccd_original.jpg?w=1024&h=576&fit=fill&bg=000000&v=1493989856&auto=format&q=92&s=ddbe8fd8eb1e23c08a75a90f69cd9783
 
-New Shield; Captain Amercian; I can put your name in my shield if you fund me; cloth; 20.0; 99.99; 0.0;2016-01-03 12:04:23; 2017-02-04 12:04:23; completed;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Captain_America%27s_shield.svg/1024px-Captain_America%27s_shield.svg.png
+New Shield; Captain Amercian; I can put your name in my shield if you fund me; cloth; 20.0; 99.99; 0.0;2016-01-03 12:04:23; 2017-02-04 12:04:23; completed;https://ksr-ugc.imgix.net/assets/015/981/905/2c7219105ccf632e2d78eebe6c90031e_original.jpg?w=1024&h=576&fit=fill&bg=000000&v=1493991526&auto=format&q=92&s=22cfc1c9d765d48c4ca6088f5b171293
 
-A Wall; Qin Shi Huang;2300 Years ago, I built a wall to defense my contry; joke; 2.0; 66666666.99; 0.0;1970-01-01 00:00:01; 1970-01-02 00:00:00; completed;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
+A Wall; Qin Shi Huang;2300 Years ago, I built a wall to defense my contry; joke; 2.0; 66666666.99; 0.0;1970-01-01 00:00:01; 1970-01-02 00:00:00; completed;https://ksr-ugc.imgix.net/assets/016/310/890/913ac9a10453e84f647ade0098905cb6_original.png?w=1024&h=576&fit=fill&bg=000000&v=1492576570&auto=format&q=92&s=11a8e80d841023d0d1dbfc6f8d5e54be
 
-Buy me a xbox; Jiayang;To learn jazz, I want a xbox.; joke; 20.0; 99.99; 0.0;1970-01-01 00:00:01; 2019-01-02 00:00:00; funding;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
+Buy me a xbox; Jiayang;To learn jazz, I want a xbox.; joke; 20.0; 99.99; 0.0;1970-01-01 00:00:01; 2019-01-02 00:00:00; funding;https://ksr-ugc.imgix.net/assets/016/320/137/c31e1833ae77f7dda5e23b7dbc53b1c5_original.png?w=1024&h=576&fit=fill&bg=000000&v=1493257893&auto=format&q=92&s=01785bc22d1125d84f03c2c05dec83b6
 
-Buy me a game; Jiayang; I also need a jazz game to play; joke; 200.0; 9999.99; 0.0;1970-01-01 00:00:01; 2019-01-02 00:00:00; funding;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
+Buy me a game; Jiayang; I also need a jazz game to play; joke; 200.0; 9999.99; 0.0;1970-01-01 00:00:01; 2019-01-02 00:00:00; funding;https://ksr-ugc.imgix.net/assets/016/428/700/6f6e5a12acc119248385efe8c88ecc28_original.jpg?w=1024&h=576&fit=fill&bg=000000&v=1493328959&auto=format&q=92&s=0d850c0de9ad885c2125ddb75d04a47c
 
-Database Project; Yancheng; Give him a xbox when he complete the db project; joke; 20.0; 99.99; 0.0;1970-01-01 00:00:01; 2020-01-02 00:00:00; funding;https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg
+Database Project; Yancheng; Give him a xbox when he complete the db project; joke; 20.0; 99.99; 0.0;1970-01-01 00:00:01; 2020-01-02 00:00:00; funding;https://ksr-ugc.imgix.net/assets/016/095/383/d2ea64fc5f2adaa1979ef49bd2c124b2_original.png?w=1024&h=576&fit=fill&bg=000000&v=1493393853&auto=format&q=92&s=126ead455f0e708956a6e4a2b0f0296c
 
 The Art of Stranski; Jiayang; A 100 page, hardback art book on Lorenzo Etherington's fictional 1940's illustrated opus, STRANSKI. Includes 3D chapter and 3D glasses!; art; 10.0; 20.0; 0; 2016-05-05 00:00:00;2018-05-05 00:00:00; funding;https://ksr-ugc.imgix.net/assets/016/178/637/c0af43d0453740505e1dc10c9943ab46_original.jpg?w=680&fit=max&v=1491614320&auto=format&q=92&s=a068cc5a86a89e2dc9bd5bd3cd291f3e
 
