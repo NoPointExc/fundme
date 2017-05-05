@@ -627,6 +627,17 @@
   },
   {
     "type": "get",
+    "url": "users/login/github",
+    "title": "github login",
+    "description": "<p>github login, will redirect to '/' when login success, or redirect to '/error=failed' if login falied.</p>",
+    "group": "user",
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "user",
+    "name": "GetUsersLoginGithub"
+  },
+  {
+    "type": "get",
     "url": "users/pledge",
     "title": "get pledge records",
     "parameter": {

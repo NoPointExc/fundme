@@ -319,6 +319,11 @@ router.post('/login', passport.authenticate('local-login'), function(req, res){
     res.status(200).send('success');
 });
 
+/**
+ * @api {get} users/login/github github login
+ * @apiDescription github login, will redirect to '/' when login success, or redirect to '/error=failed' if login falied.
+ * @apiGroup user
+ */
 router.get('/login/github', github.authenticate('github-login'));
 
 router.get('/login/github/return', 
